@@ -1,7 +1,11 @@
 // src/Register.js
-import React, { useState } from 'react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from './firebase';
+import React, { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import "../App.css"; // your main CSS
+
 
 const Register = () => {
   const [email, setEmail] = useState('');
