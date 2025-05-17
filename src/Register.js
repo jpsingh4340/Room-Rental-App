@@ -39,44 +39,70 @@ function Register() {
     }
   };
 
-
-
-
-
-
-  return (
-    <div style={{ maxWidth: '400px', margin: 'auto' }}>
+    return (
+    <div className="container">
       <h2>Register</h2>
       <form onSubmit={handleRegister}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          required
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <br /><br />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          required
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <br /><br />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          required
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br /><br />
+        {error && <div className="error">{error}</div>}
+
+        <label>Email</label>
+        <input type="email" required onChange={(e) => setEmail(e.target.value)} />
+
+        <label>Password</label>
+        <input type="password" required onChange={(e) => setPassword(e.target.value)} />
+
+        <label>Address</label>
+        <input type="text" required onChange={(e) => setAddress(e.target.value)} />
+
+        <label>Role</label>
+        <select value={role} onChange={(e) => 
+        setRole(e.target.value)}>
+          <option value="guest">Guest</option>
+          <option value="landlord">Landlord</option>
+          <option value="admin">Admin</option>
+        </select>
+
+        {role === "admin" && (
+          <>
+            <label>Admin Code</label>
+            <input
+              type="text"
+              placeholder="Enter admin access code"
+              onChange={(e) => setExtraInfo(e.target.value)}
+              required
+            />
+          </>
+        )}
+
+        {role === "landlord" && (
+          <>
+            <label>Business License Number</label>
+            <input
+              type="text"
+              placeholder="Enter your license number"
+              onChange={(e) => 
+                setExtraInfo(e.target.value)}
+              required
+            />
+          </>
+        )}
+
+        {role === "guest" && (
+          <>
+            <label>Preferred City</label>
+            <input
+              type="text"
+              placeholder="Where do you want to rent?"
+              onChange={(e) => setExtraInfo(e.target.value)}
+              required
+            />
+          </>
+        )}
+
         <button type="submit">Register</button>
       </form>
-      <p>{message}</p>
     </div>
   );
-};
+}
 
-export default Register;
+export default Register;
