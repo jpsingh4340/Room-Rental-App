@@ -7,21 +7,42 @@ import { useNavigate } from "react-router-dom";
 import "../App.css"; // your main CSS
 
 
-const Register = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
-  const [message, setMessage] = useState('');
+function Register() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("guest");
+  const [address, setAddress] = useState("");
+  const [extraInfo, setExtraInfo] = useState("");
+  const [error, setError] = useState("");
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      setMessage("Registration successful!");
-    } catch (error) {
-      setMessage(error.message);
+    setError("");
+
+     try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+      await setDoc(doc(db, "users", userCredential.user.uid), {
+        email,
+        role,
+        address,
+        extraInfo
+      });
+
+      // Redirect based on role
+      if (role === "admin") navigate("/admin");
+      else if (role === "landlord") navigate("/landlord");
+      else navigate("/customer");
+    } catch (err) {
+      setError("Registration failed. Try again.");
     }
   };
+
+
+
+
+
 
   return (
     <div style={{ maxWidth: '400px', margin: 'auto' }}>
