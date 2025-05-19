@@ -1,59 +1,57 @@
-// src/App.js
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import UserProfile from "./pages/UserProfile";
-import GuestDashboard from "./pages/GuestDashboard";
-import GuestFindRoom from "./pages/GuestFindRoom";
-import AdminDashboard from "./pages/AdminDashboard";
-import LandlordDashboard from "./pages/LandlordDashboard";
-import LandlordFindRoom from "./pages/LandlordFindRoom";
-import AdminFindRoom from "./pages/AdminFindRoom";
-import Navbar from "./components/Navbar"; // Optional if using navigation
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 
+// Pages
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import RoomListing from "./pages/RoomListing";
+import Navbar from "./components/Navbar";
+
 function App() {
-  const user = auth.currentUser;
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  if (loading) {
+    return (
+      <div style={{ textAlign: "center", marginTop: "50px" }}>
+        <h2>Loading...</h2>
+      </div>
+    );
+  }
 
   return (
     <Router>
-      <Navbar /> {/* Optional: Only if you’ve created a Navbar component */}
-
+      <Navbar user={user} />
       <Routes>
-        {/* Default redirect to guest dashboard */}
-        <Route path="/" element={<Navigate to="/guest-dashboard" />} />
+        {/* Redirect root to login or home based on auth */}
+        <Route
+          path="/"
+          element={
+            user ? <Navigate to="/roomlisting" /> : <Navigate to="/login" />
+          }
+        />
 
-        {/* Public pages */}
-        <Route path="/guest-dashboard" element={<GuestDashboard />} />
-        <Route path="/guest-rooms" element={<GuestFindRoom />} />
+        {/* Public Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        {/* Private pages – visible only after login */}
+        {/* Private Routes */}
         <Route
-          path="/landlord-dashboard"
-          element={user ? <LandlordDashboard /> : <Navigate to="/login" />}
+          path="/roomlisting"
+          element={user ? <RoomListing /> : <Navigate to="/login" />}
         />
-        <Route
-          path="/admin-dashboard"
-          element={user ? <AdminDashboard /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/landlord-rooms"
-          element={user ? <LandlordFindRoom /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/admin-rooms"
-          element={user ? <AdminFindRoom /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/profile"
-          element={user ? <UserProfile /> : <Navigate to="/login" />}
-        />
-
-        {/* Catch-all 404 */}
-        <Route path="*" element={<h2 style={{ padding: "2rem" }}>404 - Page Not Found</h2>} />
+        
       </Routes>
     </Router>
   );
