@@ -10,7 +10,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import LandlordDashboard from "./pages/LandlordDashboard";
 import LandlordFindRoom from "./pages/LandlordFindRoom";
 import AdminFindRoom from "./pages/AdminFindRoom";
-import Navbar from "./components/Navbar"; // Optional if using navigation
+import Navbar from "./components/Navbar"; 
 import { auth } from "./firebase";
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
 
   return (
     <Router>
-      <Navbar /> {/* Optional: Only if you’ve created a Navbar component */}
+      <Navbar /> { }
 
       <Routes>
         {/* Default redirect to guest dashboard */}
