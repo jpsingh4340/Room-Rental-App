@@ -1,34 +1,20 @@
-import React, { useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase'; 
-import './Auth.css'; 
+import React from 'react';
+import './Auth.css'; // Shared CSS for Login and Register
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      alert("Login successful");
-    } catch (error) {
-      alert("Login failed: " + error.message);
-    }
-  };
-
   return (
     <div className="auth-container">
       <h2>Login</h2>
-      <form className="auth-form" onSubmit={handleSubmit}>
+      <form className="auth-form">
         <label>Email:</label>
-        <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input type="email" required />
         <label>Password:</label>
-        <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input type="password" required />
         <button type="submit">Login</button>
       </form>
     </div>
   );
 }
 
-export default Login;
+export default Login;
+   
