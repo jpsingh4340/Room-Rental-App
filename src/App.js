@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
+import AddRoom from "./pages/AddRoom";
+
 
 // Pages
 import Login from "./pages/Login";
@@ -45,6 +47,9 @@ function App() {
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/addroom" element={<AddRoom /> } />
+
+
 
         {/* Private Routes */}
         <Route
