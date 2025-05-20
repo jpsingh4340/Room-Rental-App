@@ -11,6 +11,8 @@ import Register from "./pages/Register";
 import RoomListing from "./pages/RoomListing";
 import Navbar from "./components/Navbar";
 
+
+
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
