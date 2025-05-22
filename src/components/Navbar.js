@@ -1,21 +1,38 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import './Navbar.css'; // We'll create this CSS file next
+import { AuthContext } from '../context/AuthContext';
 
-function Navbar() {
+const Navbar = () => {
+  const { user, logout } = useContext(AuthContext);
+
   return (
     <nav className="navbar">
-      <div className="navbar-logo">
-        <Link to="/rooms">Rent Haaven</Link>
-      </div>
-      <ul className="navbar-links">
-        <li><Link to="/GuestDashboard">Dashboard</Link></li>
-        <li><Link to="/find-room">Find Room</Link></li>
-        <li><Link to="/login">Login</Link> / <Link to="/register">Register</Link></li>
-        <li><Link to="/profile">Profile</Link></li>
-      </ul>
+      <Link to="/">Dashboard</Link>
+      <Link to="/findroom">Find Room</Link>
+
+      {user && user.role === 'admin' && (
+        <Link to="/admin/findroom">Manage Rooms</Link>
+      )}
+      {user && user.role === 'landlord' && (
+        <Link to="/landlord/findroom">My Rooms</Link>
+      )}
+      {(user?.role === 'admin' || user?.role === 'landlord') && (
+        <Link to="/add-room">Add Room</Link>
+      )}
+
+      {user ? (
+        <>
+          <Link to="/profile">Profile</Link>
+          <button onClick={logout}>Logout</button>
+        </>
+      ) : (
+        <>
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link>
+        </>
+      )}
     </nav>
   );
-}
+};
 
 export default Navbar;
