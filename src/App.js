@@ -1,61 +1,72 @@
-// src/App.js
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import UserProfile from "./pages/UserProfile";
-import GuestDashboard from "./pages/GuestDashboard";
-import GuestFindRoom from "./pages/GuestFindRoom";
-import AdminDashboard from "./pages/AdminDashboard";
-import LandlordDashboard from "./pages/LandlordDashboard";
-import LandlordFindRoom from "./pages/LandlordFindRoom";
-import AdminFindRoom from "./pages/AdminFindRoom";
-import Navbar from "./components/Navbar"; 
-import { auth } from "./firebase";
+import React from 'react';
+import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import Navbar from './components/Navbar';
+import PrivateRoute from './components/PrivateRoute';
+import RoleBasedDashboard from './components/RoleBasedDashboard';
+import FindRoom from './pages/FindRoom';
+import AdminFindRoom from './pages/AdminFindRoom';
+import LandlordFindRoom from './pages/LandlordFindRoom';
+import AddEditRoom from './pages/AddEditRoom';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Profile from './pages/Profile';
 
 function App() {
-  const user = auth.currentUser;
-
   return (
-    <Router>
-      <Navbar /> { }
+    <AuthProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+          {/* Home / Role‐based dashboard */}
+          <Route path="/" element={<RoleBasedDashboard />} />
 
-      <Routes>
-        {/* Default redirect to guest dashboard */}
-        <Route path="/" element={<Navigate to="/guest-dashboard" />} />
+          {/* Public find-room page */}
+          <Route path="/findroom" element={<FindRoom />} />
 
-        {/* Public pages */}
-        <Route path="/guest-dashboard" element={<GuestDashboard />} />
-        <Route path="/guest-rooms" element={<GuestFindRoom />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+          {/* Auth */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
-        {/* Private pages – visible only after login */}
-        <Route
-          path="/landlord-dashboard"
-          element={user ? <LandlordDashboard /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/admin-dashboard"
-          element={user ? <AdminDashboard /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/landlord-rooms"
-          element={user ? <LandlordFindRoom /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/admin-rooms"
-          element={user ? <AdminFindRoom /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/profile"
-          element={user ? <UserProfile /> : <Navigate to="/login" />}
-        />
+          {/* Protected pages */}
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          />
 
-        {/* Catch-all 404 */}
-        <Route path="*" element={<h2 style={{ padding: "2rem" }}>404 - Page Not Found</h2>} />
-      </Routes>
-    </Router>
+          {/* Admin & landlord room management */}
+          <Route
+            path="/admin/findroom"
+            element={
+              <PrivateRoute roles={['admin']}>
+                <AdminFindRoom />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/landlord/findroom"
+            element={
+              <PrivateRoute roles={['landlord']}>
+                <LandlordFindRoom />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/add-room"
+            element={
+              <PrivateRoute roles={['admin', 'landlord']}>
+                <AddEditRoom />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
