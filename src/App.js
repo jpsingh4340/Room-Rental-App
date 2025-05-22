@@ -3,12 +3,13 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import AddRoom from "./pages/AddRoom";
+import GuestRoomList from "./pages/GuestRoomList";
 
 
 // Pages
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import RoomListing from "./pages/RoomListing";
+import RoomListing from "./pages/GuestRoomList";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/addroom" element={<AddRoom /> } />
+        <Route path="/guest-rooms" element={<GuestRoomList />} />
 
 
 
