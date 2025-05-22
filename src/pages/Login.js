@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase'; 
+import { auth } from '../firebase';
 import './Auth.css';
 
 function Login() {
@@ -16,7 +16,7 @@ function Login() {
       alert('Login successful');
       // TODO: Redirect user based on role/dashboard
     } catch (err) {
-      setError(err.message);
+      setError(err?.message || 'Login failed. Please try again.');
     }
   };
 
@@ -24,22 +24,27 @@ function Login() {
     <div className="auth-container">
       <h2>Login</h2>
       <form className="auth-form" onSubmit={handleSubmit}>
-        <label>Email:</label>
+        <label htmlFor="email">Email:</label>
         <input
+          id="email"
           type="email"
           required
           value={email}
-          onChange={e => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
         />
-        <label>Password:</label>
+
+        <label htmlFor="password">Password:</label>
         <input
+          id="password"
           type="password"
           required
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
+
         <button type="submit">Login</button>
-        {error && <p style={{color: 'red'}}>{error}</p>}
+
+        {error && <p className="error-text">{error}</p>}
       </form>
     </div>
   );
