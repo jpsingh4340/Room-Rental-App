@@ -27,30 +27,26 @@ import database from "../firebase"; // adjust the path if needed
     const newRoom = {
       title,
       location,
-      price,
+      price: Number(price), 
       image,
       description,
-      createdAt: new Date().toISOString()
+      createdAt: Date.now() /
     };
 
-    // Save to Firebase Realtime Database
     push(ref(database, "rooms"), newRoom)
       .then(() => {
         alert("Room added successfully!");
-        // Reset form
-        setTitle("");
-        setLocation("");
-        setPrice("");
-        setImage("");
-        setDescription("");
-        // Redirect or update UI
+        resetForm();
         navigate("/");
       })
       .catch((error) => {
         console.error("Error adding room:", error);
         alert("Failed to add room.");
-      });
+      })
+      .finally(() => setIsLoading(false)); // ✅ End loading
   };
+
+  
 
   return (
     <div style={styles.container}>
