@@ -3,16 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { ref, push } from "firebase/database";
 import database from "../firebase"; // adjust the path if needed
 
-function AddRoom() {
-  const [title, setTitle] = useState("");
-  const [location, setLocation] = useState("");
-  const [price, setPrice] = useState("");
-  const [image, setImage] = useState("");
-  const [description, setDescription] = useState("");
-  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const resetForm = () => {
+    setTitle("");
+    setLocation("");
+    setPrice("");
+    setImage("");
+    setDescription("");
+  };
+
+  
 
     const newRoom = {
       title,
