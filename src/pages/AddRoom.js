@@ -44,7 +44,7 @@ function AddRoom() {
 
   return (
     <div style={styles.container}>
-      <h2>Add a Room</h2>
+      <h2>Add Room</h2>
       <form onSubmit={handleSubmit} style={styles.form}>
         <input type="text" placeholder="Room Title" value={title} onChange={(e) => setTitle(e.target.value)} required style={styles.input} />
         <input type="text" placeholder="Location" value={location} onChange={(e) => setLocation(e.target.value)} required style={styles.input} />
