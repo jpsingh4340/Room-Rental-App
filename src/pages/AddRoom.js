@@ -12,6 +12,16 @@ import database from "../firebase"; // adjust the path if needed
     setDescription("");
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!title || !location || !price || !image || !description || price <= 0) {
+      alert("Please fill all fields with valid values.");
+      return;
+    }
+
+    setIsLoading(true);
+
   
 
     const newRoom = {
