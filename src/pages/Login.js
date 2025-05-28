@@ -59,5 +59,20 @@ return (
         />
         <button type="submit" className="btn primary">Login</button>
       </form>
+<div className="auth-helper-text">
+        <button onClick={handleForgot} className="link-btn">Forgot Password?</button>
+      </div>
+      <div className="auth-divider">or</div>
+      <button onClick={handleGoogle} className="btn google-btn">
+        Continue with Google
+      </button>
+
+      <div className="auth-helper-text">
+        Don't have an account? <Link to="/register">Register here</Link>
+      </div>
+    </div>
+  );
+};
+
 
 
