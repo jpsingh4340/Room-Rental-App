@@ -6,19 +6,12 @@
   --bg-light: #f9f9f9;
   --card-shadow: rgba(0, 0, 0, 0.1);
 }
-.register-form input,
-.register-form select {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-  background: #fff;
-  transition: border-color 0.2s;
-}
 
-.register-form input:focus,
-.register-form select:focus {
-  outline: none;
-  border-color: var(--primary-color);
+.register-form-container {
+  background: var(--bg-light);
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px var(--card-shadow);
 }
