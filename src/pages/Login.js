@@ -18,3 +18,25 @@ const Login = () => {
       alert(err.message);
     }
   };
+  const handleGoogle = async () => {
+    try {
+      await loginWithGoogle();
+      navigate('/');
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  const handleForgot = async () => {
+    if (!email) {
+      return alert('Please enter your email to reset your password.');
+    }
+    try {
+      await sendPasswordResetEmail(email);
+      alert('Password reset email sent. Check your inbox.');
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+
