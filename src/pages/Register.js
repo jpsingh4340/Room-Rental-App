@@ -28,7 +28,7 @@ const Register = () => {
       alert(err.message);
     }
   };
-   return (
+  return (
     <div className="form-container">
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
@@ -44,6 +44,20 @@ const Register = () => {
           <option value="admin">Admin</option>
           <option value="landlord">Landlord</option>
         </select>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
         <input
           type="password"
           placeholder="Confirm Password"
