@@ -31,7 +31,12 @@ const Register = () => {
  return (
     <div className="form-container">
       <h2>Register</h2>
-    );
-};
-
-export default Register;
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Full Name"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+          required
+        />
+   
