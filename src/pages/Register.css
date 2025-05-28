@@ -29,12 +29,43 @@
   gap: 1rem;
 }
 
-.helper-text a {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-weight: 600;
+.register-form input,
+.register-form select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  background: #fff;
+  transition: border-color 0.2s;
 }
 
-.helper-text a:hover {
-  color: var(--primary-hover);
+.register-form input:focus,
+.register-form select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.register-form label {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.register-form label input {
+  margin-right: 0.5rem;
+  width: auto;
+}
+
+.register-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
 }
