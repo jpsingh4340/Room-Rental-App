@@ -28,3 +28,10 @@ const Register = () => {
       alert(err.message);
     }
   };
+ return (
+    <div className="form-container">
+      <h2>Register</h2>
+    );
+};
+
+export default Register;
