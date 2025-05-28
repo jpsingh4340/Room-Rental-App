@@ -6,7 +6,8 @@ const Register = () => {
   const [role, setRole] = useState('guest');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [terms, setTerms] = useState(false);
+  const { register } = useContext(AuthContext);
+  const navigate = useNavigate();
 };
