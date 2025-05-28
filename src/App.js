@@ -13,10 +13,60 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
 
-<Route
+function App() {
+  return (
+    <AuthProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+        {/* Home / Role‐based dashboard */}
+          <Route path="/" element={<RoleBasedDashboard />} />
+
+          {/* Public find-room page */}
+          <Route path="/findroom" element={<FindRoom />} />
+
+          {/* Auth */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
+          {/* Protected pages */}
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          />
+            {/* Admin & landlord room management */}
+          <Route
             path="/admin/findroom"
             element={
               <PrivateRoute roles={['admin']}>
                 <AdminFindRoom />
               </PrivateRoute>
             }
+          />
+          <Route
+            path="/landlord/findroom"
+            element={
+              <PrivateRoute roles={['landlord']}>
+                <LandlordFindRoom />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/add-room"
+            element={
+              <PrivateRoute roles={['admin', 'landlord']}>
+                <AddEditRoom />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </Router>
+    </AuthProvider>
+  );
+}
+
+export default App;
