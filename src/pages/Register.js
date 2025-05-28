@@ -10,15 +10,21 @@ const Register = () => {
   const [terms, setTerms] = useState(false);
   const { register } = useContext(AuthContext);
   const navigate = useNavigate();
-  const handleSubmit = async (e) => {
+  
+   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       alert('Passwords do not match');
       return;
     }
- return (
-    <div className="form-container">
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}></form>
-      );
-};
+    if (!terms) {
+      alert('You must accept the terms and conditions');
+      return;
+    }
+    try {
+      await register(fullName, email, password, role);
+      navigate('/login');
+    } catch (err) {
+      alert(err.message);
+    }
+  };
