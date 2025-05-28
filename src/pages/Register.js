@@ -10,4 +10,15 @@ const Register = () => {
   const [terms, setTerms] = useState(false);
   const { register } = useContext(AuthContext);
   const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+ return (
+    <div className="form-container">
+      <h2>Register</h2>
+      <form onSubmit={handleSubmit}></form>
+      );
 };
