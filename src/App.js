@@ -19,7 +19,7 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-        {/* Home / Role‐based dashboard */}
+          {/* Home / Role‐based dashboard */}
           <Route path="/" element={<RoleBasedDashboard />} />
 
           {/* Public find-room page */}
@@ -38,7 +38,8 @@ function App() {
               </PrivateRoute>
             }
           />
-            {/* Admin & landlord room management */}
+
+          {/* Admin & landlord room management */}
           <Route
             path="/admin/findroom"
             element={
