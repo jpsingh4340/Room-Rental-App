@@ -147,3 +147,13 @@ h2 {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color .2s;
+}
+
+.modal-actions button:first-child {
+  background: #28a745;
+  color: #fff;
+}
+
+.modal-actions button:first-child:hover {
+  background: #218838;
+}
