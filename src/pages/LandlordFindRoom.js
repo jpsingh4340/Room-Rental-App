@@ -17,3 +17,20 @@ const LandlordFindRoom = () => {
     await deleteDoc(doc(db, 'rooms', id));
     setRooms(prev => prev.filter(r => r.id !== id));
   };
+
+  return (
+    <div>
+      <h2>Landlord: Manage Your Rooms</h2>
+      <Link to="/add-room">List New Room</Link>
+      <ul>
+        {rooms.map(r => (
+          <li key={r.id}>
+            {r.title} (${r.price})
+            <Link to={`/add-room?editId=${r.id}`}>Edit</Link>
+            <button onClick={() => handleDelete(r.id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
