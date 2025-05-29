@@ -157,3 +157,12 @@ h2 {
 .modal-actions button:first-child:hover {
   background: #218838;
 }
+
+.modal-actions button:last-child {
+  background: #dc3545;
+  color: #fff;
+}
+
+.modal-actions button:last-child:hover {
+  background: #c82333;
+}
