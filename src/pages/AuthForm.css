@@ -78,6 +78,28 @@
   font-size: 0.9rem;
   text-decoration: underline;
 }
+.link-btn:hover {
+  color: var(--primary-hover);
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #ccc;
+}
+
+.auth-divider::before {
+  margin-right: 0.5em;
+}
 
 
 
