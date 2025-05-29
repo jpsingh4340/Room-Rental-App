@@ -1,0 +1,23 @@
+ :root {
+  --primary-color: #007bff;
+  --primary-hover: #0056b3;
+  --google-color: #db4437;
+  --google-hover: #c33d2e;
+  --bg-light: #f9f9f9;
+}
+.auth-form-container {
+  background: var(--bg-light);
+  max-width: 400px;
+  margin: 4rem auto;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.auth-form-container h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  color: #333;
+}
+
