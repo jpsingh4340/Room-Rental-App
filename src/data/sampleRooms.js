@@ -76,3 +76,29 @@ export const sampleRooms = [
     imageUrl: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=60',
     ownerId: 'SOME_LANDLORD_UID'
   },
+
+  // East Auckland
+  {
+    title: 'Beach Retreat in Howick',
+    description: 'Charming cottage just minutes from Howick Beach and coastal path.',
+    location: 'East Auckland',
+    price: 170,
+    imageUrl: 'https://images.unsplash.com/photo-1475170614146-0901395df6fc?auto=format&fit=crop&w=800&q=60',
+    ownerId: 'SOME_LANDLORD_UID'
+  },
+  {
+    title: 'Luxurious Villa near Sunnyhills',
+    description: 'Spacious 4-bed villa with private pool in Sunnyhills, Pakuranga.',
+    location: 'East Auckland',
+    price: 280,
+    imageUrl: 'https://images.unsplash.com/photo-1572120360610-d971b9c5b2a8?auto=format&fit=crop&w=800&q=60',
+    ownerId: 'SOME_LANDLORD_UID'
+  },
+  {
+    title: 'Garden Studio in Pakuranga',
+    description: 'Secluded studio with garden views, close to Pakuranga Plaza.',
+    location: 'East Auckland',
+    price: 120,
+    imageUrl: 'https://images.unsplash.com/photo-1455699452105-58acfae2ebd5?auto=format&fit=crop&w=800&q=60',
+    ownerId: 'SOME_LANDLORD_UID'
+  },
