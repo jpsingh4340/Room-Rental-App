@@ -12,3 +12,8 @@ const LandlordFindRoom = () => {
     const q = query(collection(db, 'rooms'), where('ownerId', '==', user.uid));
     getDocs(q).then(snap => setRooms(snap.docs.map(d => ({ id: d.id, ...d.data() }))));
   }, [user]);
+
+   const handleDelete = async (id) => {
+    await deleteDoc(doc(db, 'rooms', id));
+    setRooms(prev => prev.filter(r => r.id !== id));
+  };
