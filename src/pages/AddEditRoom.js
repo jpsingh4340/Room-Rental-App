@@ -11,17 +11,13 @@ import { AuthContext } from '../context/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './AddEditRoom.css';
 
-const AddEditRoom = () => {
-  const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
-  const { search } = useLocation();
-  const params = new URLSearchParams(search);
-  const editId = params.get('editId');
-
-  const [form, setForm] = useState({
-    title: '',
-    description: '',
-    location: '',
-    price: '',
-    imageUrl: ''
-  });
+// If editing, load existing
+  useEffect(() => {
+    if (editId) {
+      (async () => {
+        const ref = doc(db, 'rooms', editId);
+        const snap = await getDoc(ref);
+        if (snap.exists()) setForm(snap.data());
+      })();
+    }
+  }, [editId]);
