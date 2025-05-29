@@ -108,3 +108,12 @@ h2 {
 .booking-modal .modal-content {
   position: relative;
 }
+
+
+.react-datepicker-popper {
+  position: absolute !important;
+  top: 1.5rem !important;         /* tweak if you need it higher/lower */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 2001 !important;       /* ensure it sits on top of your modal */
+}
