@@ -117,3 +117,20 @@ h2 {
   transform: translateX(-50%) !important;
   z-index: 2001 !important;       /* ensure it sits on top of your modal */
 }
+
+
+.react-datepicker-inline {
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+
+
+.react-datepicker {
+  width: auto !important;
+  display: block;
+}
+
+.react-datepicker__month-container {
+  width: auto !important;
+}
