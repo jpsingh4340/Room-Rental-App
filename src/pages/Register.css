@@ -1,0 +1,93 @@
+/* src/pages/Register.css */
+
+:root {
+  --primary-color: #007bff;
+  --primary-hover: #0056b3;
+  --bg-light: #f9f9f9;
+  --card-shadow: rgba(0, 0, 0, 0.1);
+}
+
+.register-form-container {
+  background: var(--bg-light);
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px var(--card-shadow);
+}
+
+.register-form-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.register-form input,
+.register-form select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  background: #fff;
+  transition: border-color 0.2s;
+}
+
+.register-form input:focus,
+.register-form select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.register-form label {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.register-form label input {
+  margin-right: 0.5rem;
+  width: auto;
+}
+
+.register-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.register-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.helper-text {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.helper-text a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.helper-text a:hover {
+  color: var(--primary-hover);
+}
