@@ -14,3 +14,9 @@ const AdminFindRoom = () => {
     };
     fetchRooms();
   }, []);
+
+  const handleDelete = async (roomId) => {
+    if (!window.confirm('Are you sure you want to delete this room?')) return;
+    await deleteDoc(doc(db, 'rooms', roomId));
+    setRooms(prev => prev.filter(r => r.id !== roomId));
+  };
