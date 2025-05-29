@@ -99,3 +99,12 @@ h2 {
   color: white;
   transition: background-color .2s;
 }
+
+.book-btn:hover {
+  background-color: #0056b3;
+}
+
+
+.booking-modal .modal-content {
+  position: relative;
+}
