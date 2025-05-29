@@ -29,3 +29,10 @@ const AdminFindRoom = () => {
           + Add New Room
         </Link>
       </div>
+
+      <div className="room-list">
+        {rooms.map(room => (
+          <div key={room.id} className="room-item">
+            {room.imageUrl && (
+              <img src={room.imageUrl} alt={room.title} className="room-thumb"/>
+            )}
