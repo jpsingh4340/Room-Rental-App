@@ -41,4 +41,14 @@ const AdminFindRoom = () => {
               <p className="location">{room.location}</p>
               <p className="price">${room.price} / night</p>
               <p className="description">{room.description}</p>
-              <div className="room-actions"></div>
+              <div className="room-actions">
+                <Link
+                  to={`/add-room?editId=${room.id}`}
+                  className="action-btn edit-btn"
+                >
+                  Edit
+                </Link>
+                <button
+                  onClick={() => handleDelete(room.id)}
+                  className="action-btn delete-btn"
+                ></button>
