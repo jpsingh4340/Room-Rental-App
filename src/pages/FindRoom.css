@@ -76,3 +76,14 @@ h2 {
   color: #555;
   margin-bottom: 0.5rem;
 }
+
+.description {
+  flex: 1;
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 0.75rem;
+}
+
+.price {
+  font-weight: bold;
+  margin-bottom: 0.75rem;
