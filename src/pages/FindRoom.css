@@ -49,3 +49,13 @@ h2 {
   transition: box-shadow .2s;
   background: #fff;
 }
+
+.room-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.room-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
