@@ -23,4 +23,30 @@ export const sampleRooms = [
     price: 300,
     imageUrl: 'https://images.unsplash.com/photo-1560448070-920b2643a82f?auto=format&fit=crop&w=800&q=60',
     ownerId: 'SOME_LANDLORD_UID'
-  
+  },
+
+  // West Auckland
+  {
+    title: 'Cozy Beachside Unit in Titirangi',
+    description: 'Relaxed beach-style unit near Piha and Titirangi village cafes.',
+    location: 'West Auckland',
+    price: 130,
+    imageUrl: 'https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=800&q=60',
+    ownerId: 'SOME_LANDLORD_UID'
+  },
+  {
+    title: 'Artist’s Retreat in Karekare',
+    description: 'Peaceful retreat surrounded by native bush in Karekare.',
+    location: 'West Auckland',
+    price: 150,
+    imageUrl: 'https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=800&q=60',
+    ownerId: 'SOME_LANDLORD_UID'
+  },
+  {
+    title: 'Family Home near Henderson Valley',
+    description: 'Spacious 3-bed house ideal for families, close to Henderson shops.',
+    location: 'West Auckland',
+    price: 180,
+    imageUrl: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=60',
+    ownerId: 'SOME_LANDLORD_UID'
+  },
