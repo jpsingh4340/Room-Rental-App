@@ -66,3 +66,13 @@ h2 {
   display: flex;
   flex-direction: column;
 }
+
+.room-details h3 {
+  margin: 0 0 0.5rem;
+}
+
+.location {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
