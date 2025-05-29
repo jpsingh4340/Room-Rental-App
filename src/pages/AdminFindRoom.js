@@ -20,3 +20,12 @@ const AdminFindRoom = () => {
     await deleteDoc(doc(db, 'rooms', roomId));
     setRooms(prev => prev.filter(r => r.id !== roomId));
   };
+
+  return (
+    <div className="admin-findroom-container">
+      <div className="admin-findroom-header">
+        <h2>Manage Rooms</h2>
+        <Link to="/add-room" className="add-room-btn">
+          + Add New Room
+        </Link>
+      </div>
