@@ -1,11 +1,24 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { auth, db } from '../firebase';
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-} from 'firebase/auth';
-import { doc, setDoc, getDoc } from 'firebase/firestore';
+const login = (email, password) => signInWithEmailAndPassword(auth, email, password);
+  const logout = () => signOut(auth);
 
-export const AuthContext = createContext();
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (current) => {
+      if (current) {
+        const userDoc = await getDoc(doc(db, 'users', current.uid));
+        setUser({ uid: current.uid, email: current.email, ...userDoc.data() });
+      } else {
+        setUser(null);
+      }
+      setLoading(false);
+    });
+    return unsubscribe;
+  }, []);
+
+  return (
+    <AuthContext.Provider value={{ user, loading, register, login, logout }}>
+      {!loading && children}
+    </AuthContext.Provider>
+  );
+};
