@@ -59,6 +59,25 @@
   background: var(--primary-hover);
   transform: translateY(-1px);
 }
+.btn.google-btn {
+  margin-top: 1rem;
+  background: var(--google-color);
+  color: #fff;
+}
+
+.btn.google-btn:hover {
+  background: var(--google-hover);
+  transform: translateY(-1px);
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: underline;
+}
 
 
 
