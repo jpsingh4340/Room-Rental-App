@@ -11,7 +11,22 @@ import { AuthContext } from '../context/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './AddEditRoom.css';
 
-// If editing, load existing
+const AddEditRoom = () => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
+  const editId = params.get('editId');
+
+  const [form, setForm] = useState({
+    title: '',
+    description: '',
+    location: '',
+    price: '',
+    imageUrl: ''
+  });
+
+  // If editing, load existing
   useEffect(() => {
     if (editId) {
       (async () => {
@@ -21,3 +36,22 @@ import './AddEditRoom.css';
       })();
     }
   }, [editId]);
+
+  const handleChange = e => {
+    setForm(f => ({ ...f, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    if (editId) {
+      await updateDoc(doc(db, 'rooms', editId), form);
+      alert('Room updated');
+    } else {
+      await addDoc(collection(db, 'rooms'), {
+        ...form,
+        ownerId: user.uid
+      });
+      alert('Room added');
+    }
+    navigate('/admin/findroom');
+  };
