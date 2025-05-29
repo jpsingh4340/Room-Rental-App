@@ -78,6 +78,33 @@ const AddEditRoom = () => {
             required
           />
         </label>
+        <label>
+          Location
+          <input
+            name="location"
+            value={form.location}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Price (per night)
+          <input
+            name="price"
+            type="number"
+            value={form.price}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Image URL
+          <input
+            name="imageUrl"
+            value={form.imageUrl}
+            onChange={handleChange}
+          />
+        </label>
         <button type="submit" className="submit-btn">
           {editId ? 'Update Room' : 'Add Room'}
         </button>
