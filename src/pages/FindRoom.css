@@ -23,3 +23,12 @@ h2 {
   font-size: 1rem;
   color: #333;
 }
+
+.filter-container select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  background: #fff;
+  cursor: pointer;
+}
