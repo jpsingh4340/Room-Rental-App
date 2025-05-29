@@ -1,0 +1,53 @@
+.add-edit-container {
+  max-width: 480px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.add-edit-container h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.room-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.room-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  color: #333;
+}
+
+.room-form input,
+.room-form textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.room-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.submit-btn {
+  align-self: flex-end;
+  padding: 0.6rem 1.2rem;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background: #218838;
+}
