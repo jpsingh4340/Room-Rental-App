@@ -55,3 +55,15 @@ const AddEditRoom = () => {
     }
     navigate('/admin/findroom');
   };
+  return (
+    <div className="add-edit-container">
+      <h2>{editId ? 'Edit Room' : 'Add New Room'}</h2>
+      <form className="room-form" onSubmit={handleSubmit}>
+        <label>
+          Title
+          <input
+            name="title"
+            value={form.title}
+            onChange={handleChange}
+            required
+          />
