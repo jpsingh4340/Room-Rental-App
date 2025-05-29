@@ -51,4 +51,16 @@ const AdminFindRoom = () => {
                 <button
                   onClick={() => handleDelete(room.id)}
                   className="action-btn delete-btn"
-                ></button>
+                >
+                      Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default AdminFindRoom;
