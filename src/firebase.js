@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
@@ -15,4 +13,3 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
->>>>>>> 42bd728e953242a88a38c91f2f34a896730f4117
