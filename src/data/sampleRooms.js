@@ -50,3 +50,29 @@ export const sampleRooms = [
     imageUrl: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=60',
     ownerId: 'SOME_LANDLORD_UID'
   },
+
+  // South Auckland
+  {
+    title: 'Modern Townhouse in Manukau',
+    description: 'Contemporary 2-bed townhouse steps from Westfield Manukau City.',
+    location: 'South Auckland',
+    price: 125,
+    imageUrl: 'https://images.unsplash.com/photo-1556910103-1e347b41e0f7?auto=format&fit=crop&w=800&q=60',
+    ownerId: 'SOME_LANDLORD_UID'
+  },
+  {
+    title: 'Sunny Family Bungalow in Papatoetoe',
+    description: 'Charming 3-bed bungalow with large garden in Papatoetoe.',
+    location: 'South Auckland',
+    price: 140,
+    imageUrl: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=60',
+    ownerId: 'SOME_LANDLORD_UID'
+  },
+  {
+    title: 'Quiet Unit near Otara Market',
+    description: 'Comfortable 1-bed unit close to Otara Market and public transit.',
+    location: 'South Auckland',
+    price: 110,
+    imageUrl: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=60',
+    ownerId: 'SOME_LANDLORD_UID'
+  },
