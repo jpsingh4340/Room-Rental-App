@@ -34,3 +34,5 @@ const LandlordFindRoom = () => {
     </div>
   );
 };
+
+export default LandlordFindRoom;
