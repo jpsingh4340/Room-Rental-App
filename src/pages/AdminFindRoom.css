@@ -15,5 +15,25 @@
   background: #28a745;
   color: white;
   border-radius: 4px;
-  tet-decoration: none;
+  text-decoration: none;
+}
+
+.add-room-btn:hover {
+  background: #218838;
+}
+
+.room-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.room-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  transition: box-shadow 0.2s;
 }
