@@ -36,3 +36,9 @@ const AdminFindRoom = () => {
             {room.imageUrl && (
               <img src={room.imageUrl} alt={room.title} className="room-thumb"/>
             )}
+            <div className="room-info">
+              <h3>{room.title}</h3>
+              <p className="location">{room.location}</p>
+              <p className="price">${room.price} / night</p>
+              <p className="description">{room.description}</p>
+              <div className="room-actions"></div>
