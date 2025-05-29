@@ -102,3 +102,31 @@ export const sampleRooms = [
     imageUrl: 'https://images.unsplash.com/photo-1455699452105-58acfae2ebd5?auto=format&fit=crop&w=800&q=60',
     ownerId: 'SOME_LANDLORD_UID'
   },
+
+  // North Auckland
+  {
+    title: 'Harbour View Apartment in Devonport',
+    description: 'Sunny apartment with harbour views, walking distance to ferry.',
+    location: 'North Auckland',
+    price: 200,
+    imageUrl: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=800&q=60',
+    ownerId: 'SOME_LANDLORD_UID'
+  },
+  {
+    title: 'Comfortable Bungalow in Albany',
+    description: 'Modern 2-bed bungalow close to Albany shops and beach.',
+    location: 'North Auckland',
+    price: 160,
+    imageUrl: 'https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=800&q=60',
+    ownerId: 'SOME_LANDLORD_UID'
+  },
+  {
+    title: 'Countryside Retreat in Paremoremo',
+    description: 'Quiet cottage on spacious grounds, perfect for a getaway.',
+    location: 'North Auckland',
+    price: 180,
+    imageUrl: 'https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=800&q=60',
+    ownerId: 'SOME_LANDLORD_UID'
+  }
+];
+
