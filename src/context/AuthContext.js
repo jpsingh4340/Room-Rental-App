@@ -1,49 +1,30 @@
-import React, { createContext, useState, useEffect } from 'react';
-import { auth, db } from '../firebase';
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-} from 'firebase/auth';
-import { doc, setDoc, getDoc } from 'firebase/firestore';
+ import React, { createContext, useState, useEffect } from 'react';
 
 export const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const register = async (fullName, email, password, role) => {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const uid = userCredential.user.uid;
-    await setDoc(doc(db, 'users', uid), {
-      fullName,
-      email,
-      role,
-      createdAt: new Date(),
-    });
-  };
-
-  const login = (email, password) => signInWithEmailAndPassword(auth, email, password);
-  const logout = () => signOut(auth);
-
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (current) => {
-      if (current) {
-        const userDoc = await getDoc(doc(db, 'users', current.uid));
-        setUser({ uid: current.uid, email: current.email, ...userDoc.data() });
-      } else {
-        setUser(null);
-      }
-      setLoading(false);
-    });
-    return unsubscribe;
+    // e.g. load from localStorage or API
+    const stored = localStorage.getItem('user');
+    if (stored) setUser(JSON.parse(stored));
+    setLoading(false);
   }, []);
 
+  const login = (userData) => {
+    setUser(userData);
+    localStorage.setItem('user', JSON.stringify(userData));
+  };
+  const logout = () => {
+    localStorage.removeItem('user');
+    setUser(null);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, register, login, logout }}>
-      {!loading && children}
+    <AuthContext.Provider value={{ user, loading, login, logout }}>
+      {children}
     </AuthContext.Provider>
-  );
-};
+  );
+}
