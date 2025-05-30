@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import PrivateRoute from './components/PrivateRoute';
 import RoleBasedDashboard from './components/RoleBasedDashboard';
+
 import FindRoom from './pages/FindRoom';
 import AdminFindRoom from './pages/AdminFindRoom';
 import LandlordFindRoom from './pages/LandlordFindRoom';
