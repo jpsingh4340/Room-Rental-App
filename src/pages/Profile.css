@@ -1,0 +1,17 @@
+.profile-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background: #f5f7fa;
+  min-height: calc(100vh - 70px); /* adjust if you have a navbar height */
+}
+.profile-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  padding: 2rem 1.5rem;
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
