@@ -1,7 +1,4 @@
-// ✨ Feature: AddEditRoom component to add or edit a room entry
-
 import React, { useState, useEffect, useContext } from 'react';
-// 🧱 Firebase imports for Firestore operations
 import {
   collection,
   addDoc,
@@ -10,22 +7,17 @@ import {
   updateDoc
 } from 'firebase/firestore';
 import { db } from '../firebase';
-// 🧑‍🤝‍🧑 Get the current authenticated user
 import { AuthContext } from '../context/AuthContext';
-// 🧭 React Router utilities
 import { useNavigate, useLocation } from 'react-router-dom';
-// 🎨 Styling for AddEditRoom form
 import './AddEditRoom.css';
 
 const AddEditRoom = () => {
-  // 🧑‍💼 Get current user from AuthContext
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const { search } = useLocation();
   const params = new URLSearchParams(search);
-  const editId = params.get('editId'); // 🛠 Get editId from query params
+  const editId = params.get('editId');
 
-  // 📝 Form state initialized
   const [form, setForm] = useState({
     title: '',
     description: '',
@@ -34,38 +26,34 @@ const AddEditRoom = () => {
     imageUrl: ''
   });
 
-  // 🔁 useEffect to load existing room data when in edit mode
+  // If editing, load existing
   useEffect(() => {
     if (editId) {
       (async () => {
         const ref = doc(db, 'rooms', editId);
         const snap = await getDoc(ref);
-        if (snap.exists()) setForm(snap.data()); // ✅ Populate form with existing data
+        if (snap.exists()) setForm(snap.data());
       })();
     }
   }, [editId]);
 
-  // 🎯 Update form state on input change
   const handleChange = e => {
     setForm(f => ({ ...f, [e.target.name]: e.target.value }));
   };
 
-  // 📤 Handle form submission (create or update)
   const handleSubmit = async e => {
     e.preventDefault();
     if (editId) {
-      // 🔄 Update existing room
       await updateDoc(doc(db, 'rooms', editId), form);
       alert('Room updated');
     } else {
-      // ➕ Add new room with ownerId
       await addDoc(collection(db, 'rooms'), {
         ...form,
         ownerId: user.uid
       });
       alert('Room added');
     }
-    navigate('/admin/findroom'); // 🚀 Redirect after save
+    navigate('/admin/findroom');
   };
 
   return (
@@ -125,4 +113,4 @@ const AddEditRoom = () => {
   );
 };
 
-export default AddEditRoom; // 🚢 Export component for use in routes/pages
+export default AddEditRoom;
