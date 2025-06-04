@@ -3,7 +3,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import './landlorddashboard.css';
+import './DashboardLandlord.css';
 
 const DashboardLandlord = () => {
   const { user } = useContext(AuthContext);
