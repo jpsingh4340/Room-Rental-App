@@ -6,10 +6,10 @@ const Footer = () => {
     <footer className="footer">
       {/* Optional “Why Choose” section above the dark footer */}
       <div className="footer-why-choose">
-        <h2 className="why-choose-title">Why Choose Preloved?</h2>
+        <h2 className="why-choose-title">Why Booking from RentalHaven?</h2>
         <p className="why-choose-text">
-          Whether you’re cleaning out your closet or hunting for a hidden gem, <br />
-          Preloved makes it easy, fast, and fun to connect with others in your community.
+          whether it’s a cozy studio or a luxury suite, we make booking hassle-free <br />
+          Enjoy 24/7 support, transparent pricing, and flexible cancellation so you can travel worry-free.
         </p>
       </div>
 
@@ -18,10 +18,10 @@ const Footer = () => {
         <div className="footer-container">
           {/* Left column: Brand + tagline */}
           <div className="footer-column">
-            <h3 className="footer-heading">PRELOVED</h3>
+            <h3 className="footer-heading">Rental Haven</h3>
             <p className="footer-text">
-              Buy, sell, and explore second-hand treasures safely with <br />
-              PreLoved.
+              Explore and Book your room safely with <br />
+              Rental Haven.
             </p>
           </div>
 
