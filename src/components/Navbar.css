@@ -1,0 +1,155 @@
+.navbar {
+  background-color: #ffffff;            /* pure white background */
+  border-bottom: 1px solid #dee2e6;     /* light grey bottom border */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Centered wrapper to constrain width */
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+/* =========================
+   Logo / Brand styling
+   ========================= */
+.navbar-logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #343a40;                        /* dark grey text */
+  text-decoration: none;
+}
+
+.logo-accent {
+  color: #6c757d;                        /* medium grey accent on “Haven” */
+}
+
+/* =========================
+   Primary nav links (left side)
+   ========================= */
+.nav-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin-left: 24px;
+}
+
+/* Base link style */
+.nav-link {
+  color: #495057;                        /* slate grey text */
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 6px 0;
+  position: relative;
+  transition: color 0.2s ease-in-out;
+}
+
+/* Underline on hover/focus */
+.nav-link::after {
+  content: '';
+  display: block;
+  width: 0%;
+  height: 2px;
+  background-color: #adb5bd;             /* light grey underline */
+  transition: width 0.2s ease-in-out;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+}
+
+.nav-link:hover::after,
+.nav-link:focus::after {
+  width: 100%;
+}
+
+/* Active (current) route link */
+.nav-link.active {
+  color: #212529;                        /* near‐black when active */
+}
+
+.nav-link.active::after {
+  width: 100%;
+  background-color: #6c757d;             /* medium grey underline when active */
+}
+
+/* =========================
+   Auth area (right side)
+   ========================= */
+.nav-auth {
+  display: flex;
+  align-items: center;
+}
+
+/* Logout button (styled as link) */
+.logout-button {
+  background: transparent;
+  border: none;
+  color: #495057;                        /* same slate grey */
+  font-size: 1rem;
+  margin-left: 24px;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.logout-button:hover {
+  color: #212529;                        /* near‐black on hover */
+}
+
+/* If you want 'Register' to stand out */
+.register-link {
+  background-color: #6c757d;             /* medium grey background */
+  color: #ffffff;                        /* white text */
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-left: 16px;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.register-link:hover {
+  background-color: #495057;             /* darker grey on hover */
+  color: #ffffff;
+}
+
+/* =========================
+   Responsive behavior
+   ========================= */
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-direction: column;
+    height: auto;
+    padding: 10px 20px;
+  }
+
+  .nav-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 8px;
+  }
+
+  .nav-item {
+    margin: 8px 16px;
+  }
+
+  .nav-auth {
+    margin-top: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .logout-button,
+  .nav-link {
+    margin-left: 0;
+    margin-right: 16px;
+  }
+}
