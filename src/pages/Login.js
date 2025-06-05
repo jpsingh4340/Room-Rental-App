@@ -1,7 +1,8 @@
- import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import './AuthForm.css';
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -75,5 +76,4 @@ const Login = () => {
   );
 };
 
-export default Login;
-
+export default Login;

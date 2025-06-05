@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+
 const Register = () => {
   const [fullName, setFullName] = useState('');
   const [role, setRole] = useState('guest');
@@ -10,8 +11,8 @@ const Register = () => {
   const [terms, setTerms] = useState(false);
   const { register } = useContext(AuthContext);
   const navigate = useNavigate();
-  
-   const handleSubmit = async (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       alert('Passwords do not match');
@@ -28,6 +29,7 @@ const Register = () => {
       alert(err.message);
     }
   };
+
   return (
     <div className="form-container">
       <h2>Register</h2>
