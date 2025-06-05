@@ -6,6 +6,13 @@
   z-index: 100;
 }
 
+/* Add spacing between the “Find Room” menu and the “Profile” link */
+.nav-auth .nav-link,
+.nav-auth .logout-button {
+  margin-left: 24px;
+}
+
+
 /* Centered wrapper to constrain width */
 .navbar-container {
   max-width: 1200px;
