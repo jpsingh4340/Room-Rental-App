@@ -30,7 +30,7 @@ const Footer = () => {
             <h3 className="footer-heading">Contact Us</h3>
             <ul className="contact-list">
               <li>
-                <strong>Email:</strong> <a href="mailto:support@preloved.com">support@preloved.com</a>
+                <strong>Email:</strong> <a href="mailto:support@rentalhaven.com">support@rentalhaven.com</a>
               </li>
               <li>
                 <strong>Phone:</strong> +64 123 456 789
@@ -55,7 +55,7 @@ const Footer = () => {
 
         {/* Bottom copyright line */}
         <div className="footer-bottom">
-          © 2025 PreLoved. All rights reserved.
+          © 2025 Rental Haven. All rights reserved.
         </div>
       </div>
     </footer>
