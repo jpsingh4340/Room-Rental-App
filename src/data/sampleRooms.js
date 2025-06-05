@@ -21,7 +21,7 @@ export const sampleRooms = [
     description: 'Penthouse suite featuring panoramic Sky Tower vistas and high-end finishes.',
     location: 'Auckland CBD',
     price: 300,
-    imageUrl: 'https://images.unsplash.com/photo-1560448070-920b2643a82f?auto=format&fit=crop&w=800&q=60',
+    imageUrl: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=60',
     ownerId: 'SOME_LANDLORD_UID'
   },
 
