@@ -24,3 +24,17 @@ const FeedbackForm = ({ roomId }) => {
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
   };
+
+  return (
+    <form onSubmit={handleSubmit} style={{ marginTop: "10px" }}>
+      <h4>Leave Feedback</h4>
+      <div>
+        <input
+          type="text"
+          placeholder="Your Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+          style={{ padding: "5px", width: "100%", marginBottom: "5px" }}
+        />
+      </div>
