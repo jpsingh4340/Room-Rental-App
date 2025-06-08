@@ -88,3 +88,6 @@ const FeedbackList = ({ roomId }) => {
     </div>
   );
 };
+
+export default Feedback;
+s
