@@ -60,3 +60,14 @@ const FeedbackForm = ({ roomId }) => {
     </form>
   );
 };
+
+const FeedbackList = ({ roomId }) => {
+  const [feedbacks, setFeedbacks] = useState([]);
+
+  useEffect(() => {
+    const fetchFeedbacks = async () => {
+      const querySnapshot = await getDocs(collection(db, "rooms", roomId, "feedback"));
+      setFeedbacks(querySnapshot.docs.map((doc) => doc.data()));
+    };
+    fetchFeedbacks();
+  }, [roomId]);
