@@ -7,3 +7,6 @@ const FeedbackForm = ({ roomId }) => {
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState(5);
   const [submitted, setSubmitted] = useState(false);
+
+    const handleSubmit = async (e) => {
+    e.preventDefault();
