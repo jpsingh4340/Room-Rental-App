@@ -71,3 +71,20 @@ const FeedbackList = ({ roomId }) => {
     };
     fetchFeedbacks();
   }, [roomId]);
+
+  return (
+    <div style={{ marginTop: "10px" }}>
+      <h4>Feedback</h4>
+      {feedbacks.length === 0 ? (
+        <p>No feedback yet.</p>
+      ) : (
+        feedbacks.map((fb, idx) => (
+          <div key={idx} style={{ borderTop: "1px solid #ccc", paddingTop: "5px" }}>
+            <strong>{fb.name}</strong> ({fb.rating}/5):<br />
+            {fb.comment}
+          </div>
+        ))
+      )}
+    </div>
+  );
+};
