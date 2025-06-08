@@ -36,3 +36,16 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
+.feedback-button:hover {
+  background-color: #0056b3;
+}
+
+.feedback-success {
+  color: green;
+  font-weight: bold;
+}
+
+.feedback-list {
+  margin-top: 20px;
+}
