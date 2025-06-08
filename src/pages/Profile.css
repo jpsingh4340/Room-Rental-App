@@ -5,6 +5,7 @@
   background: #f5f7fa;
   min-height: calc(100vh - 70px); /* adjust if you have a navbar height */
 }
+
 .profile-card {
   background: white;
   border-radius: 12px;
@@ -14,4 +15,66 @@
   width: 100%;
   text-align: center;
   position: relative;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #007bff;
+  object-fit: cover;
+  margin-top: -80px; /* pulls avatar up */
+  background: white;
+}
+
+.profile-name {
+  margin: 0.5rem 0 0.25rem;
+  font-size: 1.6rem;
+  color: #333;
+}
+
+.profile-role {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: #007bff;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.profile-info {
+  text-align: left;
+  margin-top: 1rem;
+  border-top: 1px solid #e1e4e8;
+  padding-top: 1rem;
+}
+
+.profile-info div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.profile-info label {
+  font-weight: 600;
+  color: #555;
+}
+
+.profile-info span {
+  color: #333;
+}
+
+.edit-btn {
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.4rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #007bff;
+  color: white;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.edit-btn:hover {
+  background-color: #0056b3;
 }

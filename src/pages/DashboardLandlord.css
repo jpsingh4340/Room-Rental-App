@@ -1,0 +1,78 @@
+.dashboard-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+}
+
+.dashboard-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+.card .label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.card .value {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  color: #000;
+}
+
+.instructions {
+  background: #e6f7ff;
+  border-left: 4px solid #3490dc;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.instructions h3 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.instructions ol {
+  list-style: decimal inside;
+  color: #333;
+}
+
+.instructions ol li {
+  margin-bottom: 5px;
+}
+
+.list-room-btn {
+  background: #3490dc;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.list-room-btn:hover {
+  background: #2779bd;
+}

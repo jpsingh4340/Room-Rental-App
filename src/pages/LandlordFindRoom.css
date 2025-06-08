@@ -1,0 +1,96 @@
+.landlord-container {
+  padding: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-primary {
+  background-color: #007bff;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+}
+
+.btn-info {
+  background-color: #17a2b8;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+}
+
+.search-input {
+  flex: 1;
+  max-width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+
+.room-list {
+  list-style: none;
+  padding: 0;
+}
+
+.room-card {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.room-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+}
+
+.room-price {
+  font-weight: bold;
+  color: #28a745;
+}
+
+.room-thumb img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 4px;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+
+.room-description {
+  margin-bottom: 0.75rem;
+  color: #555;
+}
+
+.room-actions {
+  margin-top: auto;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.error-message {
+  color: #dc3545;
+  font-weight: bold;
+  margin: 1rem 0;
+}
