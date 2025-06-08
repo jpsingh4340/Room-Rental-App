@@ -49,3 +49,11 @@
 .feedback-list {
   margin-top: 20px;
 }
+
+.feedback-card {
+  background: white;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin-top: 10px;
+}
