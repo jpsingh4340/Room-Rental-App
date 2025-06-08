@@ -11,3 +11,13 @@
   flex-direction: column;
   gap: 10px;
 }
+
+.feedback-input,
+.feedback-textarea,
+.feedback-select {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
