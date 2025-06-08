@@ -38,3 +38,12 @@ const FeedbackForm = ({ roomId }) => {
           style={{ padding: "5px", width: "100%", marginBottom: "5px" }}
         />
       </div>
+      <div>
+        <textarea
+          placeholder="Your Comment"
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          required
+          style={{ padding: "5px", width: "100%", marginBottom: "5px" }}
+        />
+      </div>
