@@ -26,3 +26,13 @@
   height: 80px;
   resize: vertical;
 }
+
+.feedback-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
