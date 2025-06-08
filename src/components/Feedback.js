@@ -17,3 +17,10 @@ const FeedbackForm = ({ roomId }) => {
       rating,
       date: new Date().toISOString(),
     });
+
+    setName("");
+    setComment("");
+    setRating(5);
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 3000);
+  };
