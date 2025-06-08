@@ -5,3 +5,9 @@
   background: #f9f9f9;
   border-radius: 12px;
 }
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
