@@ -47,3 +47,16 @@ const FeedbackForm = ({ roomId }) => {
           style={{ padding: "5px", width: "100%", marginBottom: "5px" }}
         />
       </div>
+      <div>
+        <label>Rating: </label>
+        <select value={rating} onChange={(e) => setRating(Number(e.target.value))}>
+          {[1, 2, 3, 4, 5].map((num) => (
+            <option key={num} value={num}>{num}</option>
+          ))}
+        </select>
+      </div>
+      <button type="submit" style={{ marginTop: "5px" }}>Submit</button>
+      {submitted && <p style={{ color: "green" }}>Thank you for your feedback!</p>}
+    </form>
+  );
+};
