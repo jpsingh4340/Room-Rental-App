@@ -8,5 +8,12 @@ const FeedbackForm = ({ roomId }) => {
   const [rating, setRating] = useState(5);
   const [submitted, setSubmitted] = useState(false);
 
-    const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    await addDoc(collection(db, "rooms", roomId, "feedback"), {
+      name,
+      comment,
+      rating,
+      date: new Date().toISOString(),
+    });
