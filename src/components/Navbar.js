@@ -1,5 +1,4 @@
 // src/components/Navbar.js
-
 import React, { useContext } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
@@ -11,86 +10,69 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        {/* Logo / Brand Name */}
+        {/* Logo */}
         <Link to="/" className="navbar-logo">
           Rental<span className="logo-accent">Haven</span>
         </Link>
 
-        {/* Primary navigation links */}
+        {/* Primary nav always shows Dashboard & Find Room */}
         <ul className="nav-menu">
           <li className="nav-item">
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
+            <NavLink to="/" end className={({ isActive }) =>
                 isActive ? 'nav-link active' : 'nav-link'
-              }
-              end
-            >
+              }>
               Dashboard
             </NavLink>
           </li>
-
           <li className="nav-item">
-            <NavLink
-              to="/findroom"
-              className={({ isActive }) =>
+            <NavLink to="/findroom" className={({ isActive }) =>
                 isActive ? 'nav-link active' : 'nav-link'
-              }
-            >
+              }>
               Find Room
             </NavLink>
           </li>
 
-          {user && user.role === 'admin' && (
+          {/* Admin only */}
+          {user?.role === 'admin' && (
             <li className="nav-item">
-              <NavLink
-                to="/admin/findroom"
-                className={({ isActive }) =>
+              <NavLink to="/admin/findroom" className={({ isActive }) =>
                   isActive ? 'nav-link active' : 'nav-link'
-                }
-              >
+                }>
                 Manage Rooms
               </NavLink>
             </li>
           )}
 
-          {user && user.role === 'landlord' && (
+          {/* Landlord only */}
+          {user?.role === 'landlord' && (
             <li className="nav-item">
-              <NavLink
-                to="/landlord/findroom"
-                className={({ isActive }) =>
+              <NavLink to="/landlord/findroom" className={({ isActive }) =>
                   isActive ? 'nav-link active' : 'nav-link'
-                }
-              >
+                }>
                 My Rooms
               </NavLink>
             </li>
           )}
 
-          {(user?.role === 'admin' || user?.role === 'landlord') && (
+          {/* Both admin & landlord */}
+          {['admin', 'landlord'].includes(user?.role) && (
             <li className="nav-item">
-              <NavLink
-                to="/add-room"
-                className={({ isActive }) =>
+              <NavLink to="/add-room" className={({ isActive }) =>
                   isActive ? 'nav-link active' : 'nav-link'
-                }
-              >
+                }>
                 Add Room
               </NavLink>
             </li>
           )}
         </ul>
 
-        {/* Right‐side authentication links / buttons */}
+        {/* Right‐side auth links */}
         <div className="nav-auth">
           {user ? (
             <>
-              <NavLink
-                to="/profile"
-                className={({ isActive }) =>
+              <NavLink to="/profile" className={({ isActive }) =>
                   isActive ? 'nav-link active' : 'nav-link'
-                }
-              >
+                }>
                 Profile
               </NavLink>
               <button className="logout-button" onClick={logout}>
@@ -99,20 +81,14 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <NavLink
-                to="/login"
-                className={({ isActive }) =>
+              <NavLink to="/login" className={({ isActive }) =>
                   isActive ? 'nav-link active' : 'nav-link'
-                }
-              >
+                }>
                 Login
               </NavLink>
-              <NavLink
-                to="/register"
-                className={({ isActive }) =>
+              <NavLink to="/register" className={({ isActive }) =>
                   isActive ? 'nav-link active register-link' : 'nav-link register-link'
-                }
-              >
+                }>
                 Register
               </NavLink>
             </>
