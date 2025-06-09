@@ -98,3 +98,14 @@ const handleSubmit = async e => {
       setError(err.message);
     }
   };
+ const handleForgot = async () => {
+    if (!email) {
+      return setError('Please enter your email to reset your password.');
+    }
+    try {
+      await resetPassword(email);
+      alert('Password reset email sent.');
+    } catch (err) {
+      setError(err.message);
+    }
+  };
