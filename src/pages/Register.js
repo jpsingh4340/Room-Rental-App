@@ -1,23 +1,40 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
+import './AuthForm.css';
 
-  const handleSubmit = async (e) => {
+const Register = () => {
+  const [fullName, setFullName] = useState('');
+  const [role, setRole] = useState('guest');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [terms, setTerms] = useState(false);
+  const [error, setError] = useState('');
+  const { register } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleSubmit = async e => {
     e.preventDefault();
+    setError('');
     if (password !== confirmPassword) {
-      alert('Passwords do not match');
-      return;
+      return setError('Passwords do not match.');
     }
     if (!terms) {
-      alert('You must accept the terms and conditions');
-      return;
+      return setError('You must accept the terms and conditions.');
     }
     try {
       await register(fullName, email, password, role);
-      navigate('/login');
+      if (role === 'landlord') {
+        navigate('/pending-approval');
+      } else {
+        navigate('/login');
+      }
     } catch (err) {
-      alert(err.message);
+      setError(err.message);
     }
   };
+
 
   return (
     <div className="form-container">
