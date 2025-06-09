@@ -109,3 +109,13 @@ const handleSubmit = async e => {
       setError(err.message);
     }
   };
+return (
+    <div className="auth-form-container">
+      <h2>Login</h2>
+      {error && <p className="error">{error}</p>}
+      <form onSubmit={handleSubmit} className="auth-form">
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
