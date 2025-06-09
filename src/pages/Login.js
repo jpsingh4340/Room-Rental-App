@@ -128,3 +128,14 @@ return (
           onChange={e => setPassword(e.target.value)}
           required
         />
+<button type="submit" className="btn primary">Login</button>
+      </form>
+      <div className="auth-helper-text">
+        <button onClick={handleForgot} className="link-btn">
+          Forgot Password?
+        </button>
+      </div>
+      <div className="auth-divider">or</div>
+      <button onClick={loginWithGoogle} className="btn google-btn">
+        Continue with Google
+      </button>
