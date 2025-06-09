@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import './AuthForm.css';
 
 const Register = () => {
   const [fullName, setFullName] = useState('');
@@ -9,76 +10,80 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [terms, setTerms] = useState(false);
+  const [error, setError] = useState('');
   const { register } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
+    setError('');
     if (password !== confirmPassword) {
-      alert('Passwords do not match');
-      return;
+      return setError('Passwords do not match.');
     }
     if (!terms) {
-      alert('You must accept the terms and conditions');
-      return;
+      return setError('You must accept the terms and conditions.');
     }
     try {
       await register(fullName, email, password, role);
-      navigate('/login');
+      if (role === 'landlord') {
+        navigate('/pending-approval');
+      } else {
+        navigate('/login');
+      }
     } catch (err) {
-      alert(err.message);
+      setError(err.message);
     }
   };
 
   return (
-    <div className="form-container">
+    <div className="auth-form-container">
       <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
+      {error && <p className="error">{error}</p>}
+      <form onSubmit={handleSubmit} className="auth-form">
         <input
           type="text"
           placeholder="Full Name"
           value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
+          onChange={e => setFullName(e.target.value)}
           required
         />
-        <select value={role} onChange={(e) => setRole(e.target.value)}>
+        <select value={role} onChange={e => setRole(e.target.value)}>
           <option value="guest">Guest</option>
-          <option value="admin">Admin</option>
           <option value="landlord">Landlord</option>
         </select>
         <input
           type="email"
           placeholder="Email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={e => setEmail(e.target.value)}
           required
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={e => setPassword(e.target.value)}
           required
         />
         <input
           type="password"
           placeholder="Confirm Password"
           value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
+          onChange={e => setConfirmPassword(e.target.value)}
           required
         />
-        <label>
+        <label className="terms">
           <input
             type="checkbox"
             checked={terms}
-            onChange={(e) => setTerms(e.target.checked)}
-          />{' '}
+            onChange={e => setTerms(e.target.checked)}
+          />
           I agree to the terms and conditions
         </label>
-        <button type="submit">Register</button>
+        <button type="submit" className="btn primary">Register</button>
       </form>
     </div>
   );
 };
 
-export default Register;
+export default Register;
