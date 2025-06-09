@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useContext } from 'react';
 import { collection, getDocs, addDoc } from 'firebase/firestore';
 import { db } from '../firebase';
@@ -151,4 +150,3 @@ const FindRoom = () => {
 };
 
 export default FindRoom;
-
