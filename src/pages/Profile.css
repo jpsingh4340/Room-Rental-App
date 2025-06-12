@@ -1,6 +1,6 @@
 /* src/pages/Profile.css */
 
-/* accent color */
+/* Root variables */
 :root {
   --accent-color: #f0ad4e;
   --bg-light: #fafafa;
@@ -8,6 +8,9 @@
   --text-dark: #333333;
   --text-muted: #666666;
   --border-light: #e0e0e0;
+  --star-size: 1.6rem;
+  --feedback-border: #ddd;
+  --feedback-bg: #fff;
 }
 
 .profile-container {
@@ -23,7 +26,7 @@
   background: var(--bg-white);
   border-left: 6px solid var(--accent-color);
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   display: flex;
   align-items: center;
   padding: 1.5rem 2rem;
@@ -100,7 +103,7 @@
   border: 1px solid var(--border-light);
   border-radius: 6px;
   overflow: hidden;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .booking-thumb {
@@ -111,13 +114,14 @@
 }
 
 .booking-details {
-  padding: 0.75rem 1rem;
+  padding: 1rem;
   flex: 1;
+  position: relative;
 }
 
 .booking-title {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: var(--text-dark);
 }
 
@@ -127,18 +131,90 @@
   color: var(--text-muted);
 }
 
-.booking-date {
-  margin: 0;
-  font-size: 0.8rem;
+.booking-date,
+.booking-price {
+  margin: 0.25rem 0;
+  font-size: 0.85rem;
   color: var(--text-muted);
 }
 
 .no-bookings {
   color: var(--text-muted);
   font-style: italic;
+  padding: 2rem;
+  text-align: center;
 }
 
-/* Responsive */
+/* Feedback form */
+.feedback-form {
+  margin-top: 1rem;
+  border-top: 1px solid var(--border-light);
+  padding-top: 1rem;
+  background: var(--feedback-bg);
+  border-radius: 4px;
+}
+
+.feedback-form h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  color: var(--text-dark);
+}
+
+.star-rating {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.star {
+  font-size: var(--star-size);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: var(--border-light);
+  transition: color 0.2s;
+  padding: 0;
+}
+
+.star:hover,
+.star.selected {
+  color: var(--accent-color);
+}
+
+.feedback-form textarea {
+  width: 100%;
+  min-height: 60px;
+  resize: vertical;
+  padding: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+}
+
+.submit-feedback-btn {
+  background: var(--accent-color);
+  color: var(--bg-white);
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.submit-feedback-btn:hover {
+  background: darken(var(--accent-color), 10%);
+}
+
+.feedback-thanks {
+  margin-top: 1rem;
+  font-style: italic;
+  color: var(--accent-color);
+}
+
+/* Responsive adjustments */
 @media (max-width: 600px) {
   .profile-header {
     flex-direction: column;
