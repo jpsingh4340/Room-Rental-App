@@ -18,7 +18,14 @@ import { useNavigate } from 'react-router-dom';
 import { sampleRooms } from '../data/sampleRooms';
 import './FindRoom.css';
 
-
+const regions = [
+  'All',
+  'Auckland CBD',
+  'West Auckland',
+  'South Auckland',
+  'East Auckland',
+  'North Auckland',
+];
 
 // RoomCard Component
 function RoomCard({ room, feedbacks = [], onBook, onOpenDetail }) {
