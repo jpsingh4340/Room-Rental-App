@@ -13,21 +13,26 @@ const DashboardLandlord = () => {
   const [bookingCount, setBookingCount] = useState(0);
   const [roomCount, setRoomCount] = useState(0);
 
-  
-
-  // Fetch rooms listed by landlord
+  // Fetch bookings for earnings and count
   useEffect(() => {
-    const fetchRooms = async () => {
-      const snap = await getDocs(collection(db, 'rooms'));
+    const fetchBookings = async () => {
+      const snap = await getDocs(collection(db, 'bookings'));
+      let total = 0;
       let count = 0;
       snap.forEach(doc => {
         const data = doc.data();
-        if (data.ownerId === user.uid) count += 1;
+        if (data.ownerId === user.uid) {
+          total += data.price;
+          count += 1;
+        }
       });
-      setRoomCount(count);
+      setRevenue(total);
+      setBookingCount(count);
     };
-    fetchRooms();
+    fetchBookings();
   }, [user]);
+
+  
 
   return (
     <div className="dashboard-container">
