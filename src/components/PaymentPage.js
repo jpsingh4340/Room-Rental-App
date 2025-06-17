@@ -23,3 +23,14 @@ const PaymentPage = () => {
         setLoading(false);
         return;
       }
+console.log('Fetching booking with ID:', bookingId); // ✅ Debug log
+
+      try {
+        const docRef = doc(db, 'bookings', bookingId);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          setBooking(docSnap.data());
+        } else {
+          setErrorMsg('Booking not found.');
+        }
