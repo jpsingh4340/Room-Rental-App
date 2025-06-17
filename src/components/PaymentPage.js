@@ -57,4 +57,15 @@ const handleInputChange = (e) => {
       alert('Please fill in all payment fields.');
       return;
     }
+try {
+      const bookingRef = doc(db, 'bookings', bookingId);
+      await updateDoc(bookingRef, {
+        paymentStatus: 'paid',
+        paymentDate: new Date().toISOString(),
+        paymentDetails: {
+          cardholderName,
+          last4: cardNumber.slice(-4),
+        },
+      });
+
 
