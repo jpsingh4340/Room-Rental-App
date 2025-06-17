@@ -16,3 +16,10 @@ const PaymentPage = () => {
     expiryDate: '',
     cvv: '',
   });
+ useEffect(() => {
+    const fetchBooking = async () => {
+      if (!bookingId) {
+        setErrorMsg('Invalid booking ID.');
+        setLoading(false);
+        return;
+      }
