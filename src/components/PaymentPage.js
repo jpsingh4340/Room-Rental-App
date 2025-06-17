@@ -45,3 +45,16 @@ console.log('Fetching booking with ID:', bookingId); // ✅ Debug log
     fetchBooking();
   }, [bookingId]);
 
+const handleInputChange = (e) => {
+    setPaymentInfo({ ...paymentInfo, [e.target.name]: e.target.value });
+  };
+
+  const handlePayment = async (e) => {
+    e.preventDefault();
+    const { cardholderName, cardNumber, expiryDate, cvv } = paymentInfo;
+
+    if (!cardholderName || !cardNumber || !expiryDate || !cvv) {
+      alert('Please fill in all payment fields.');
+      return;
+    }
+
