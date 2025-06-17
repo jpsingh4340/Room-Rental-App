@@ -34,3 +34,14 @@ console.log('Fetching booking with ID:', bookingId); // ✅ Debug log
         } else {
           setErrorMsg('Booking not found.');
         }
+ } catch (error) {
+        console.error('Error fetching booking:', error);
+        setErrorMsg('Failed to load booking.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBooking();
+  }, [bookingId]);
+
