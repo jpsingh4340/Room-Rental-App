@@ -94,4 +94,14 @@ return (
             <p><strong>Total:</strong> ₹{booking.totalPrice}</p>
           </div>
         </div>
+ <form onSubmit={handlePayment} className="payment-form">
+          <h3>Payment Details</h3>
+          <input
+            type="text"
+            name="cardholderName"
+            placeholder="Cardholder Name"
+            value={paymentInfo.cardholderName}
+            onChange={handleInputChange}
+            required
+          />
 
