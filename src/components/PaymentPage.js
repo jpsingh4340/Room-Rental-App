@@ -122,4 +122,21 @@ return (
               onChange={handleInputChange}
               required
             />
+<input
+              type="text"
+              name="cvv"
+              placeholder="CVV"
+              maxLength="3"
+              value={paymentInfo.cvv}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          <button type="submit">Pay ₹{booking.totalPrice}</button>
+        </form>
+      </div>
+    </div>
+  );
+};
 
+export default PaymentPage;
