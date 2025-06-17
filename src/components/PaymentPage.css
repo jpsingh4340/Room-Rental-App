@@ -14,3 +14,9 @@ payment-container {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   padding: 2rem;
 }
+.booking-summary {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
