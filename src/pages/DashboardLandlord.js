@@ -32,7 +32,19 @@ const DashboardLandlord = () => {
     fetchBookings();
   }, [user]);
 
-  
+  // Fetch rooms listed by landlord
+  useEffect(() => {
+    const fetchRooms = async () => {
+      const snap = await getDocs(collection(db, 'rooms'));
+      let count = 0;
+      snap.forEach(doc => {
+        const data = doc.data();
+        if (data.ownerId === user.uid) count += 1;
+      });
+      setRoomCount(count);
+    };
+    fetchRooms();
+  }, [user]);
 
   return (
     <div className="dashboard-container">
