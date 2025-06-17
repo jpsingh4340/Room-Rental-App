@@ -1,3 +1,4 @@
+// src/components/FindRoom.js
 import React, { useState, useEffect, useContext } from 'react';
 import {
   collection,
@@ -17,7 +18,6 @@ import { useNavigate } from 'react-router-dom';
 import { sampleRooms } from '../data/sampleRooms';
 import './FindRoom.css';
 
-// Regions for the filter
 const regions = [
   'All',
   'Auckland CBD',
@@ -27,13 +27,17 @@ const regions = [
   'North Auckland',
 ];
 
-// Room card with its own carousel
-function RoomCard({ room, onBook, onOpenDetail }) {
+// RoomCard Component
+function RoomCard({ room, feedbacks = [], onBook, onOpenDetail }) {
   const images = room.imageUrls?.length ? room.imageUrls : [room.imageUrl];
   const [idx, setIdx] = useState(0);
 
   const prev = e => { e.stopPropagation(); setIdx(i => (i - 1 + images.length) % images.length); };
   const next = e => { e.stopPropagation(); setIdx(i => (i + 1) % images.length); };
+
+  const avgRating = feedbacks.length
+    ? Math.floor(feedbacks.reduce((sum, r) => sum + r.rating, 0) / feedbacks.length)
+    : 0;
 
   return (
     <div className="room-card" onClick={() => onOpenDetail(room)}>
@@ -49,6 +53,20 @@ function RoomCard({ room, onBook, onOpenDetail }) {
         <p className="room-specs">
           🛏 {room.bedrooms} ⋅ 🛁 {room.bathrooms} ⋅ 🍽️ {room.kitchens} ⋅ 🛋️ {room.lounges}
         </p>
+
+        {feedbacks.length > 0 && (
+          <div className="card-feedback">
+            <div className="star-rating">
+              {[1,2,3,4,5].map(n => (
+                <span key={n} className={n <= avgRating ? 'star selected' : 'star'}>★</span>
+              ))}
+            </div>
+            <span className="review-count">
+              {feedbacks.length} review{feedbacks.length > 1 ? 's' : ''}
+            </span>
+          </div>
+        )}
+
         <button
           className="book-btn"
           onClick={e => { e.stopPropagation(); onBook(room); }}
@@ -71,9 +89,9 @@ export default function FindRoom() {
   const [bookingRoom, setBookingRoom] = useState(null);
   const [detailRoom, setDetailRoom] = useState(null);
   const [detailImgIdx, setDetailImgIdx] = useState(0);
-  const [date, setDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
-  // 1) Load & seed rooms if needed
   useEffect(() => {
     const fetchAndSeed = async () => {
       const roomsCol = collection(db, 'rooms');
@@ -81,8 +99,11 @@ export default function FindRoom() {
       let docs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
 
       if (snap.docs.length !== sampleRooms.length) {
+        // Delete all current docs
         await Promise.all(snap.docs.map(d => deleteDoc(doc(db, 'rooms', d.id))));
+        // Add sample rooms
         await Promise.all(sampleRooms.map(r => addDoc(roomsCol, r)));
+        // Fetch again
         const newSnap = await getDocs(roomsCol);
         docs = newSnap.docs.map(d => ({ id: d.id, ...d.data() }));
       }
@@ -93,7 +114,6 @@ export default function FindRoom() {
     fetchAndSeed();
   }, []);
 
-  // 2) Load feedbacks
   useEffect(() => {
     if (!rooms.length) return;
     const fetchFeedbacks = async () => {
@@ -107,9 +127,7 @@ export default function FindRoom() {
             let username = 'Anonymous';
             try {
               const uDoc = await getDoc(doc(db, 'users', userId));
-              if (uDoc.exists()) {
-                username = uDoc.data().fullName || uDoc.data().email;
-              }
+              if (uDoc.exists()) username = uDoc.data().fullName || uDoc.data().email;
             } catch {}
             return { id: snap.id, rating, comment, username };
           })
@@ -121,7 +139,6 @@ export default function FindRoom() {
     fetchFeedbacks();
   }, [rooms]);
 
-  // 3) Filter by region
   useEffect(() => {
     setFilteredRooms(
       selectedRegion === 'All'
@@ -130,12 +147,10 @@ export default function FindRoom() {
     );
   }, [selectedRegion, rooms]);
 
-  // Booking handlers
   const handleBook = room => {
     if (!user) return navigate('/login');
     if (user.role !== 'guest') return alert('Only guests can book rooms');
     setBookingRoom(room);
-    // if we're already in detail view of another room, open its booking UI:
     if (detailRoom?.id !== room.id) {
       setDetailRoom(null);
       setTimeout(() => {
@@ -144,20 +159,43 @@ export default function FindRoom() {
       }, 10);
     }
   };
+
   const confirmBooking = async () => {
-    await addDoc(collection(db, 'bookings'), {
-      roomId: bookingRoom.id,
-      userId: user.uid,
-      ownerId: bookingRoom.ownerId,
-      date: date.toISOString(),
-      price: bookingRoom.price,
-      createdAt: new Date().toISOString()
-    });
-    alert('Booking confirmed!');
-    setBookingRoom(null);
+    if (endDate < startDate) {
+      alert('End date cannot be before start date.');
+      return;
+    }
+
+    const nights = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
+    if (nights === 0) {
+      alert('Please select at least 1 night.');
+      return;
+    }
+
+    const totalPrice = bookingRoom.price * nights;
+
+    try {
+      const docRef = await addDoc(collection(db, 'bookings'), {
+        roomId: bookingRoom.id,
+        userId: user.uid,
+        ownerId: bookingRoom.ownerId,
+        roomTitle: bookingRoom.title,
+        roomImageUrl: bookingRoom.imageUrl,
+        roomDescription: bookingRoom.description,
+        startDate: startDate.toISOString().split('T')[0],
+        endDate: endDate.toISOString().split('T')[0],
+        nights,
+        pricePerNight: bookingRoom.price,
+        totalPrice,
+        createdAt: new Date().toISOString()
+      });
+
+      navigate(`/payment/${docRef.id}`);
+    } catch (err) {
+      alert('Error booking room: ' + err.message);
+    }
   };
 
-  // Detail handlers
   const openDetail = room => {
     setDetailRoom(room);
     setDetailImgIdx(0);
@@ -178,9 +216,7 @@ export default function FindRoom() {
           value={selectedRegion}
           onChange={e => setSelectedRegion(e.target.value)}
         >
-          {regions.map(r => (
-            <option key={r} value={r}>{r}</option>
-          ))}
+          {regions.map(r => <option key={r} value={r}>{r}</option>)}
         </select>
       </div>
 
@@ -189,13 +225,13 @@ export default function FindRoom() {
           <RoomCard
             key={room.id}
             room={room}
+            feedbacks={feedbacks[room.id] || []}
             onBook={handleBook}
             onOpenDetail={openDetail}
           />
         ))}
       </div>
 
-      {/* Detail Overlay */}
       {detailRoom && (
         <div className="detail-overlay">
           <div className="detail-container">
@@ -203,19 +239,15 @@ export default function FindRoom() {
               ← Back to Results
             </button>
             <div className="detail-main">
-              {/* Carousel */}
               <div className="detail-carousel">
                 <button
                   className="carousel-btn prev"
                   onClick={() =>
                     setDetailImgIdx(i =>
-                      (i - 1 + (detailRoom.imageUrls?.length || 1)) %
-                      (detailRoom.imageUrls?.length || 1)
+                      (i - 1 + (detailRoom.imageUrls?.length || 1)) % (detailRoom.imageUrls?.length || 1)
                     )
                   }
-                >
-                  ‹
-                </button>
+                >‹</button>
                 <img
                   src={detailRoom.imageUrls?.[detailImgIdx] || detailRoom.imageUrl}
                   alt={detailRoom.title}
@@ -228,9 +260,7 @@ export default function FindRoom() {
                       (i + 1) % (detailRoom.imageUrls?.length || 1)
                     )
                   }
-                >
-                  ›
-                </button>
+                >›</button>
               </div>
 
               <div className="detail-text">
@@ -241,21 +271,18 @@ export default function FindRoom() {
                   🛏 {detailRoom.bedrooms} ⋅ 🛁 {detailRoom.bathrooms} ⋅ 🍽️ {detailRoom.kitchens} ⋅ 🛋️ {detailRoom.lounges}
                 </p>
 
-                {/* Book / Booking Form */}
-                {!bookingRoom || bookingRoom.id !== detailRoom.id ? (
-                  <button
-                    className="book-btn"
-                    onClick={() => handleBook(detailRoom)}
-                  >
+                {(!bookingRoom || bookingRoom.id !== detailRoom.id) ? (
+                  <button className="book-btn" onClick={() => handleBook(detailRoom)}>
                     Book This Room
                   </button>
                 ) : (
                   <div className="booking-form">
-                    <DatePicker
-                      selected={date}
-                      onChange={setDate}
-                      inline
-                    />
+                    <div className="date-picker-wrapper">
+                      <label>Start Date:</label>
+                      <DatePicker selected={startDate} onChange={setStartDate} />
+                      <label>End Date:</label>
+                      <DatePicker selected={endDate} onChange={setEndDate} />
+                    </div>
                     <div className="modal-actions">
                       <button onClick={confirmBooking}>Confirm</button>
                       <button onClick={() => setBookingRoom(null)}>Cancel</button>
@@ -267,16 +294,13 @@ export default function FindRoom() {
 
             <h3>Reviews</h3>
             <div className="reviews-section">
-              {feedbacks[detailRoom.id]?.length ? (
+              {(feedbacks[detailRoom.id] || []).length > 0 ? (
                 feedbacks[detailRoom.id].map(r => (
                   <div key={r.id} className="review-item">
                     <strong>{r.username}</strong>
                     <div className="star-rating">
                       {[1,2,3,4,5].map(i => (
-                        <span
-                          key={i}
-                          className={i <= r.rating ? 'star selected' : 'star'}
-                        >
+                        <span key={i} className={i <= r.rating ? 'star selected' : 'star'}>
                           ★
                         </span>
                       ))}
