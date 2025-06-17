@@ -79,4 +79,19 @@ try {
   if (loading) return <div className="loading">Loading booking details...</div>;
   if (errorMsg) return <div className="error">{errorMsg}</div>;
 
+return (
+    <div className="payment-container">
+      <div className="payment-card">
+        <h2>Confirm Your Payment</h2>
+        <div className="booking-summary">
+          <img src={booking.roomImageUrl} alt="Room" />
+          <div className="booking-info">
+            <h3>{booking.roomTitle}</h3>
+            <p>{booking.roomDescription}</p>
+            <p><strong>Dates:</strong> {booking.startDate} to {booking.endDate}</p>
+            <p><strong>Nights:</strong> {booking.nights}</p>
+            <p><strong>Price per night:</strong> ₹{booking.pricePerNight}</p>
+            <p><strong>Total:</strong> ₹{booking.totalPrice}</p>
+          </div>
+        </div>
 
