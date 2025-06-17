@@ -68,4 +68,15 @@ try {
         },
       });
 
+ alert('Payment successful!');
+      navigate('/thank-you');
+    } catch (error) {
+      console.error('Error updating booking:', error);
+      alert('Payment failed. Try again.');
+    }
+  };
+
+  if (loading) return <div className="loading">Loading booking details...</div>;
+  if (errorMsg) return <div className="error">{errorMsg}</div>;
+
 
