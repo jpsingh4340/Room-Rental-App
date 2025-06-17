@@ -1,69 +1,74 @@
-
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import './AuthForm.css';
 
 const Login = () => {
-  const { login, loginWithGoogle, resetPassword } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const { login, loginWithGoogle, sendPasswordResetEmail } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
     try {
       await login(email, password);
       navigate('/');
     } catch (err) {
-      setError(err.message);
+      alert(err.message);
+    }
+  };
+
+  const handleGoogle = async () => {
+    try {
+      await loginWithGoogle();
+      navigate('/');
+    } catch (err) {
+      alert(err.message);
     }
   };
 
   const handleForgot = async () => {
     if (!email) {
-      return setError('Please enter your email to reset your password.');
+      return alert('Please enter your email to reset your password.');
     }
     try {
-      await resetPassword(email);
-      alert('Password reset email sent.');
+      await sendPasswordResetEmail(email);
+      alert('Password reset email sent. Check your inbox.');
     } catch (err) {
-      setError(err.message);
+      alert(err.message);
     }
   };
 
   return (
     <div className="auth-form-container">
       <h2>Login</h2>
-      {error && <p className="error">{error}</p>}
       <form onSubmit={handleSubmit} className="auth-form">
         <input
           type="email"
           placeholder="Email"
           value={email}
-          onChange={e => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
         <button type="submit" className="btn primary">Login</button>
       </form>
+
       <div className="auth-helper-text">
-        <button onClick={handleForgot} className="link-btn">
-          Forgot Password?
-        </button>
+        <button onClick={handleForgot} className="link-btn">Forgot Password?</button>
       </div>
       <div className="auth-divider">or</div>
-      <button onClick={loginWithGoogle} className="btn google-btn">
+      <button onClick={handleGoogle} className="btn google-btn">
         Continue with Google
       </button>
+
       <div className="auth-helper-text">
         Don't have an account? <Link to="/register">Register here</Link>
       </div>
@@ -71,4 +76,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Login;
