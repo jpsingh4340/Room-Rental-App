@@ -1,6 +1,5 @@
-// src/pages/DashboardAdmin.js
 import React, { useState, useEffect } from 'react';
-import { collection, getDocs, updateDoc, doc } from 'firebase/firestore';
+import { collection, getDocs, updateDoc, doc, deleteDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import './DashboardAdmin.css';
 
@@ -24,20 +23,17 @@ const DashboardAdmin = () => {
           getDocs(collection(db, 'users')),
         ]);
 
-        // counts
         const roomsCount = roomsSnap.size;
         const bookingsCount = bookingsSnap.size;
 
-        // revenue
         const bookingsData = bookingsSnap.docs.map(d => d.data());
         const totalRevenue = bookingsData.reduce((sum, b) => sum + (Number(b.price) || 0), 0);
 
-        // split landlords
         const allUsers = usersSnap.docs.map(d => ({ id: d.id, ...d.data() }));
         const landlords = allUsers.filter(u => u.role === 'landlord');
         const approved = landlords.filter(u => u.isApproved);
-        const pending  = landlords.filter(u => !u.isApproved);
-        const guests   = allUsers.filter(u => u.role === 'guest');
+        const pending = landlords.filter(u => !u.isApproved);
+        const guests = allUsers.filter(u => u.role === 'guest');
 
         setStats({
           rooms: roomsCount,
@@ -60,11 +56,26 @@ const DashboardAdmin = () => {
   const approve = async uid => {
     try {
       await updateDoc(doc(db, 'users', uid), { isApproved: true });
-      // move from pending → approved in UI
       setPendingLandlords(pl => pl.filter(u => u.id !== uid));
-      setApprovedLandlords(al => [...al, pendingLandlords.find(u => u.id === uid)]);
+      const approvedUser = pendingLandlords.find(u => u.id === uid);
+      if (approvedUser) {
+        setApprovedLandlords(al => [...al, { ...approvedUser, isApproved: true }]);
+      }
     } catch (err) {
       console.error('Error approving landlord:', err);
+    }
+  };
+
+  const deleteLandlord = async uid => {
+    const confirm = window.confirm("Are you sure you want to delete this landlord?");
+    if (!confirm) return;
+
+    try {
+      await deleteDoc(doc(db, 'users', uid));
+      setApprovedLandlords(al => al.filter(u => u.id !== uid));
+      setPendingLandlords(pl => pl.filter(u => u.id !== uid));
+    } catch (err) {
+      console.error('Error deleting landlord:', err);
     }
   };
 
@@ -102,6 +113,7 @@ const DashboardAdmin = () => {
             {approvedLandlords.map(u => (
               <li key={u.id}>
                 {u.fullName} &lt;{u.email}&gt;
+                <button onClick={() => deleteLandlord(u.id)} className="delete-btn">Delete</button>
               </li>
             ))}
           </ul>
@@ -116,6 +128,7 @@ const DashboardAdmin = () => {
               <li key={u.id}>
                 {u.fullName} &lt;{u.email}&gt;
                 <button onClick={() => approve(u.id)}>Approve</button>
+                <button onClick={() => deleteLandlord(u.id)} className="delete-btn">Delete</button>
               </li>
             ))}
           </ul>
