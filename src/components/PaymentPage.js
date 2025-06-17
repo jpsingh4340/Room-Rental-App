@@ -94,7 +94,7 @@ return (
             <p><strong>Total:</strong> ₹{booking.totalPrice}</p>
           </div>
         </div>
- <form onSubmit={handlePayment} className="payment-form">
+        <form onSubmit={handlePayment} className="payment-form">
           <h3>Payment Details</h3>
           <input
             type="text"
@@ -104,4 +104,22 @@ return (
             onChange={handleInputChange}
             required
           />
+<input
+            type="text"
+            name="cardNumber"
+            placeholder="Card Number"
+            maxLength="16"
+            value={paymentInfo.cardNumber}
+            onChange={handleInputChange}
+            required
+          />
+          <div className="payment-row">
+            <input
+              type="text"
+              name="expiryDate"
+              placeholder="MM/YY"
+              value={paymentInfo.expiryDate}
+              onChange={handleInputChange}
+              required
+            />
 
