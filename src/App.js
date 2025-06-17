@@ -8,6 +8,9 @@ import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import PrivateRoute from './components/PrivateRoute';
 import RoleBasedDashboard from './components/RoleBasedDashboard';
+import PaymentPage from './components/PaymentPage';
+
+
 
 import FindRoom from './pages/FindRoom';
 import AdminFindRoom from './pages/AdminFindRoom';
@@ -72,6 +75,13 @@ function App() {
               </PrivateRoute>
             }
           />
+
+<Route path="/payment/:bookingId" element={<PaymentPage />} />
+
+
+
+
+
         </Routes>
 
         {/* Render Footer below all routes */}
