@@ -133,7 +133,7 @@ export const sampleRooms = [
     lounges: 1,
     imageUrl: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=60',
     imageUrls: [
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=60',
+      'https://sl.bing.net/cPQtkXPItY4',
       'https://images.unsplash.com/photo-1556910103-1e347b41e0f7?auto=format&fit=crop&w=800&q=60'
     ],
     ownerId: 'SOME_LANDLORD_UID'
