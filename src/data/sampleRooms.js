@@ -134,7 +134,8 @@ export const sampleRooms = [
     imageUrl: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=60',
     imageUrls: [
       'https://sl.bing.net/cPQtkXPItY4',
-      'https://images.unsplash.com/photo-1556910103-1e347b41e0f7?auto=format&fit=crop&w=800&q=60'
+      'https://th.bing.com/th/id/OIP.N2zGXJ9_PdDrjNAoULzZfAHaEK?r=0&rs=1&pid=ImgDetMain'
+      'https://cache.marriott.com/marriottassets/marriott/HNMSI/hnmsi-ocean-guestroom-4648-hor-clsc.jpg?interpolation=progressive-bilinear&'
     ],
     ownerId: 'SOME_LANDLORD_UID'
   },
