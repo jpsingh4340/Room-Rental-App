@@ -132,9 +132,8 @@ export const sampleRooms = [
     kitchens: 1,
     lounges: 1,
     imageUrl: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=60',
-    imageUrls: [
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=60',
-      'https://images.unsplash.com/photo-1556910103-1e347b41e0f7?auto=format&fit=crop&w=800&q=60'
+    imageUrls: ['https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=60',
+      'https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?auto=format&fit=crop&w=800&q=60'
     ],
     ownerId: 'SOME_LANDLORD_UID'
   },
