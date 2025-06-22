@@ -18,7 +18,19 @@ export default function AddEditRoom() {
   const { search } = useLocation();
   const editId = new URLSearchParams(search).get('editId');
 
- 
+  // form state
+  const [form, setForm] = useState({
+    title: '',
+    description: '',
+    location: '',
+    price: '',
+    bedrooms: 1,
+    bathrooms: 1,
+    kitchens: 1,
+    lounges: 0,
+  });
+  // comma- or newline-separated image URLs
+  const [imageUrlsRaw, setImageUrlsRaw] = useState('');
 
   // load existing room if editing
   useEffect(() => {
