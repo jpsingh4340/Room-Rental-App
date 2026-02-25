@@ -1,0 +1,58 @@
+QUICK FIX FOR SLOW ADMIN PAGE - 3 SIMPLE STEPS
+
+Step 1: Add "limit" to imports (Line 2-12)
+========================================
+Find this line:
+  import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
+
+Change to:
+  import { addDoc, collection, deleteDoc, doc, limit, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
+
+(Just add "limit," after "doc,")
+
+
+Step 2: Add limit(50) to users query (Line ~100)
+================================================
+Find:
+  return onSnapshot(collection(db, "users"), (snapshot) => {
+
+Change to:
+  return onSnapshot(query(collection(db, "users"), limit(50)), (snapshot) => {
+
+
+Step 3: Add limit() to other 7 queries
+======================================
+Find each line and add limit() as shown:
+
+Line ~180 (Services):
+  FROM: return onSnapshot(collection(db, SERVICE_COLLECTION), (snapshot) => {
+  TO:   return onSnapshot(query(collection(db, SERVICE_COLLECTION), limit(100)), (snapshot) => {
+
+Line ~210 (ServiceProvider):
+  FROM: const unsub = onSnapshot(collection(db, "ServiceProvider"), (snapshot) => {
+  TO:   const unsub = onSnapshot(query(collection(db, "ServiceProvider"), limit(100)), (snapshot) => {
+
+Line ~550 (Category):
+  FROM: return onSnapshot(collection(db, "Category"), (snapshot) => {
+  TO:   return onSnapshot(query(collection(db, "Category"), limit(100)), (snapshot) => {
+
+Line ~580 (ServiceCategories):
+  FROM: return onSnapshot(collection(db, SERVICE_CATEGORY_COLLECTION), (snapshot) => {
+  TO:   return onSnapshot(query(collection(db, SERVICE_CATEGORY_COLLECTION), limit(100)), (snapshot) => {
+
+Line ~650 (Tickets):
+  FROM: const ticketsQuery = query(collection(db, "tickets"), orderBy("createdAt", "desc"));
+  TO:   const ticketsQuery = query(collection(db, "tickets"), orderBy("createdAt", "desc"), limit(50));
+
+Line ~850 (Roles):
+  FROM: return onSnapshot(collection(db, "Roles"), (snapshot) => {
+  TO:   return onSnapshot(query(collection(db, "Roles"), limit(50)), (snapshot) => {
+
+Line ~1050 (Notifications):
+  FROM: return onSnapshot(collection(db, "Notification"), (snapshot) => {
+  TO:   return onSnapshot(query(collection(db, "Notification"), orderBy("sentAt", "desc"), limit(50)), (snapshot) => {
+  
+  ALSO: Remove the .sort() call after the map() since we're ordering in the query now
+
+
+RESULT: Page should load 5-10x faster!

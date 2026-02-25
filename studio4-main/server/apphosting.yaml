@@ -1,0 +1,9 @@
+env:
+  variables:
+    MAIL_HOST: "wbdx eftd nguc sfkr"
+    MAIL_PORT: "587"
+    MAIL_SECURE: "false" # set to "true" if using SMTPS/465
+    MAIL_USER: "alloraservicehub@gmail.com"
+    MAIL_PASS: "wbdx eftd nguc sfkr"
+    CLIENT_ORIGIN: "https://allora-api--allora-serice-hub.asia-southeast1.hosted.app/"
+    FIREBASE_PROJECT_ID: "Allora-Serice-Hub"

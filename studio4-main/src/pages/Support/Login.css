@@ -1,0 +1,142 @@
+/* Styling for the support/agent login layout and form elements. */
+/* Background */
+.login-page {
+    background-color: #40b9f5;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+
+/* Decorative Circles */
+.login-page::before,
+.login-page::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background-color: #b3e5fc;
+    z-index: 0;
+}
+
+.login-page::before {
+    width: 600px;
+    height: 600px;
+    bottom: -200px;
+    left: -150px;
+}
+
+.login-page::after {
+    width: 700px;
+    height: 700px;
+    top: -300px;
+    right: -200px;
+}
+
+/* Title and subtitle */
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 0.5rem;
+    z-index: 1;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #000;
+    margin-bottom: 2rem;
+    z-index: 1;
+}
+
+/* Login Box */
+.login-container {
+    background-color: #e1f5fe;
+    padding: 2.5rem 3rem;
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+    width: 340px;
+    z-index: 1;
+    text-align: left;
+    position: relative;
+}
+
+.login-container h2 {
+    color: #2196f3;
+    margin-bottom: 1.5rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+/* Input Fields */
+.input-box {
+    width: 100%;
+    padding: 0.9rem;
+    margin-bottom: 1.2rem;
+    border: 1.5px solid #90caf9;
+    background-color: #ffffff;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #333;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.input-box:focus {
+    border-color: #2196f3;
+    box-shadow: 0 0 4px #64b5f6;
+}
+
+.input-box::placeholder {
+    color: #7ab5e3;
+}
+
+/* Password Field with Icon */
+.password-container {
+    position: relative;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 12px;
+    top: 13px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #64b5f6;
+}
+
+/* Forgot Password */
+.forgot-password {
+    display: block;
+    text-align: right;
+    font-size: 0.9rem;
+    color: #2196f3;
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* Login Button */
+.login-btn {
+    width: 100%;
+    padding: 0.9rem;
+    background-color: #64b5f6;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.login-btn:hover {
+    background-color: #42a5f5;
+    transform: translateY(-2px);
+}

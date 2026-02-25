@@ -1,0 +1,18 @@
+# Default: everyone shares responsibility. Branch protection should require 2 approvals.
+*                                          @daasha @kiran @jitendra @prabhjot
+
+# Daasha's customer-facing work → reviewed by Kiran + Jitendra
+src/components/customer*                   @kiran @jitendra
+src/dashboard.css                          @kiran @jitendra
+src/getStarted.css                         @kiran @jitendra
+
+# Kiran's admin/auth work → reviewed by Daasha + Prabhjot
+src/firebase.js                            @daasha @prabhjot
+src/constants/                             @daasha @prabhjot
+
+# Jitendra's support flows → reviewed by Daasha + Kiran
+server/                                    @daasha @kiran
+
+# Prabhjot's service-pro experience → reviewed by Daasha + Jitendra
+src/styles.css                             @daasha @jitendra
+src/components/customerServices.js         @daasha @jitendra

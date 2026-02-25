@@ -1,0 +1,112 @@
+/* Global typography imports and base layout resets shared across the app. */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f8ff; /* flat tone to eliminate gradient banding */
+}
+
+/* Ensure a single scroll container: keep scrolling on #root for consistency */
+html, body {
+  min-height: 100%;
+  height: auto;
+  overflow-y: auto; /* use a single, natural page scrollbar */
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  height: auto;
+  overflow: visible; /* avoid nested scrollbars */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Ensure proper layout for dashboard pages */
+.customer-page,
+.support-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Fix navigation bar positioning */
+.dashboard-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+/* Ensure main content areas are properly sized */
+.customer-dashboard-main,
+.support-main {
+  flex: 1;
+  width: 100%;
+}
+
+.placeholder-page {
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+  gap: 12px;
+  padding: 80px 16px;
+  text-align: center;
+}
+
+.app-loader {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgba(246, 249, 255, 0.96), rgba(236, 244, 255, 0.92));
+  z-index: 9999;
+}
+
+.app-loader-card {
+  display: grid;
+  place-items: center;
+  gap: 12px;
+  padding: 28px 32px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 24px 70px rgba(12, 35, 98, 0.12);
+}
+
+.app-loader-logo {
+  width: 86px;
+  height: 86px;
+  filter: drop-shadow(0 14px 38px rgba(36, 80, 200, 0.25));
+  animation: appLogoPulse 1.4s ease-in-out infinite;
+}
+
+.app-loader-text {
+  margin: 0;
+  font-weight: 600;
+  color: #213560;
+}
+
+@keyframes appLogoPulse {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

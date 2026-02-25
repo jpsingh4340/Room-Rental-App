@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 200">
+  <defs>
+    <linearGradient id="loopGradient" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#1829ff"/>
+      <stop offset="30%" stop-color="#3a38ff"/>
+      <stop offset="58%" stop-color="#7a2fff"/>
+      <stop offset="82%" stop-color="#c12cff"/>
+      <stop offset="100%" stop-color="#ff3fae"/>
+    </linearGradient>
+    <linearGradient id="glowGradient" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="rgba(40,54,255,0.08)"/>
+      <stop offset="45%" stop-color="rgba(94,60,255,0.18)"/>
+      <stop offset="100%" stop-color="rgba(255,60,200,0.22)"/>
+    </linearGradient>
+    <filter id="softGlow" x="-16%" y="-20%" width="132%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path
+      class="loop-glow"
+      d="M130 40C62 40 62 160 130 160C198 160 222 40 290 40C358 40 358 160 290 160C222 160 198 40 130 40"
+      stroke="url(#glowGradient)"
+      stroke-width="44"
+      pathLength="1000"
+    />
+    <path
+      class="loop-path"
+      d="M130 40C62 40 62 160 130 160C198 160 222 40 290 40C358 40 358 160 290 160C222 160 198 40 130 40"
+      stroke="url(#loopGradient)"
+      stroke-width="32"
+      filter="url(#softGlow)"
+      pathLength="1000"
+    />
+  </g>
+
+</svg>
