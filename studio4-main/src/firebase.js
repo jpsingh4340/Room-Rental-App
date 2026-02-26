@@ -15,9 +15,9 @@ const envConfig = {
 
 const fallbackConfig = {
   apiKey: "AIzaSyA1gGqKyv1Lo_wH5SNsVqPB92SW1GgGPa8",
-  authDomain: "allora-serice-hub.firebaseapp.com",
-  projectId: "allora-serice-hub",
-  storageBucket: "allora-serice-hub.firebasestorage.app",
+  authDomain: "rental-haven-c052a.firebaseapp.com",
+  projectId: "rental-haven-c052a",
+  storageBucket: "rental-haven-c052a.firebasestorage.app",
   messagingSenderId: "47437060835",
   appId: "1:47437060835:web:768f0a66e5d142776c43d6",
   measurementId: "G-CHY5DDD9BL",
